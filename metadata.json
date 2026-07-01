@@ -1,5 +1,5 @@
 {
-  "name": "Jamshedpur Connect",
+  "name": "Go Jamshedpur",
   "description": "Jamshedpur's most trusted home services marketplace connecting households with skilled, verified local professionals.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

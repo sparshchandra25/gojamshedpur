@@ -137,7 +137,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
               {isSignUp ? 'Create Visitor Account' : 'Sign In'}
             </h3>
             <p className="text-xs text-gray-400 font-medium mt-0.5">
-              {isSignUp ? 'Register to save your profile in our local database' : 'Access your Jamshedpur Connect profile'}
+              {isSignUp ? 'Register to save your profile in our local database' : 'Access your Go Jamshedpur profile'}
             </p>
           </div>
           <button 
@@ -296,7 +296,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
               </p>
             ) : (
               <p>
-                First time visiting Jamshedpur Connect?{' '}
+                First time visiting Go Jamshedpur?{' '}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(true)}
@@ -310,7 +310,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 
           {/* Extra Database persistence note */}
           <div className="mt-6 bg-slate-50 border border-slate-100 rounded-xl p-3 text-[10px] text-gray-400 leading-normal">
-            <strong>Database Status:</strong> Active local registry storage. Accounts are automatically saved and persisted across browser sessions. Jamshedpur Connect does not share your contact credentials with third parties.
+            <strong>Database Status:</strong> Active local registry storage. Accounts are automatically saved and persisted across browser sessions. Go Jamshedpur does not share your contact credentials with third parties.
           </div>
 
         </div>

@@ -212,17 +212,18 @@ export const VERIFIED_PROS: Pro[] = [
 export const REVIEWS: Review[] = [
   {
     id: 'review-1',
-    stars: 5,
-    text: '“Booked an electrician through Jamshedpur Connect for my new flat in Bistupur. The verification process gave me real confidence. The pro arrived on time, did clean work — no mess, no excuses.”',
+    stars: 4.6
+    ,
+    text: '“Booked an electrician through Go Jamshedpur for my new flat in adarsh nagar. came right on time , just need help with a little in increasing repairmen”',
     author: 'Neha Agarwal',
     neighborhood: 'Bistupur, Jamshedpur',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop'
   },
   {
     id: 'review-2',
-    stars: 5,
-    text: '“Finally, an app that actually works for Jamshedpur! Got Mahesh for a leaking pipe issue near Telco Colony at 9 PM. He was there within 40 minutes. Truly local, truly reliable.”',
-    author: 'Sumit Ghosh',
+    stars: 4.1,
+    text: '“Finally, ek aisa aap jisme local trusted repair wale mill rahe ha! i needed help in Telco Colony at 9 PM. He was there within 40 minutes. Truly local, truly reliable.”',
+    author: 'Sumit kumar',
     neighborhood: 'Telco Colony, Jamshedpur',
     avatarUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop',
     isHighlighted: true
@@ -230,7 +231,7 @@ export const REVIEWS: Review[] = [
   {
     id: 'review-3',
     stars: 5,
-    text: '“Used Jamshedpur Connect for AC service before summer. Priced fairly, no hidden charges. The invoice came digitally. Something this polished for our city — about time!”',
+    text: '“Used Go Jamshedpur for AC service before summer. Priced fairly, no hidden charges. The invoice came digitally. Something this polished for our city — about time!”',
     author: 'Rekha Mishra',
     neighborhood: 'Mango, Jamshedpur',
     avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop'
