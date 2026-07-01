@@ -33,16 +33,16 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-extrabold text-white text-base tracking-tight leading-none">
-                  Jamshedpur
+                  Go
                 </span>
                 <span className="font-display font-semibold text-gray-300 text-[10px] tracking-widest uppercase mt-0.5 leading-none">
-                  CONNECT
+                  jamshdpur
                 </span>
               </div>
             </div>
 
             <p className="text-xs text-gray-400 leading-relaxed max-w-sm mb-6" id="footer-bio-text">
-              Jamshedpur's most trusted home services marketplace — connecting households with skilled, verified local professionals.
+              Jamshedpur's most trusted home services marketplace — connecting households with private skilled, verified local professionals.
             </p>
 
             {/* Social Icons row */}
