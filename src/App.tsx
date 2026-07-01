@@ -101,7 +101,7 @@ export default function App() {
           <div className="space-y-3.5">
             {/* Main Branding - Elegant scale/fade entrance */}
             <h1 className="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-white animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_0.1s_both]">
-              Jamshedpur <span className="bg-gradient-to-r from-white via-zinc-300 to-neutral-400 bg-clip-text text-transparent">Connect</span>
+              Go <span className="bg-gradient-to-r from-white via-zinc-300 to-neutral-400 bg-clip-text text-transparent">Jamshedpur</span>
             </h1>
             
             {/* Tagline - Sequenced fade & slide-in entrance */}
