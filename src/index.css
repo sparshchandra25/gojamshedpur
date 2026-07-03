@@ -1,36 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Plus Jakarta Sans", var(--font-sans);
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-logo: "Comfortaa", sans-serif;
   
-  --color-brand-navy: #0d153b;
-  --color-brand-amber: #F5A623;
-  --color-brand-gold: #FFD166;
+  --color-brand-dark: #0a1128;
+  --color-brand-navy: #102050;
+  --color-brand-blue: #1b356e;
+  --color-brand-cyan: #f1b42f;
+  --color-brand-accent: #fabc2c;
 }
 
-html, body {
-  font-family: var(--font-sans);
-  background-color: #F8FAFC;
-  color: #1E293B;
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 12px rgba(91, 192, 190, 0.3);
+  }
 }
 
-.font-display {
-  font-family: var(--font-display);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-.font-mono {
-  font-family: var(--font-mono);
+::-webkit-scrollbar-track {
+  background: #0b132b;
 }
-
-.goj-font {
-  font-family: var(--font-logo);
+::-webkit-scrollbar-thumb {
+  background: #1c2541;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a506b;
 }

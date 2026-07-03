@@ -7,10 +7,10 @@ export default function Process() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16" id="process-header">
-          <span className="text-[11px] font-bold text-sky-600 tracking-widest uppercase block mb-3 leading-none">
+          <span className="text-[11px] font-bold text-[#102050] tracking-widest uppercase block mb-3 leading-none">
             PROCESS
           </span>
-          <h2 className="font-display font-extrabold text-[#0f172a] text-3xl sm:text-4xl tracking-tight">
+          <h2 className="font-display font-extrabold text-[#102050] text-3xl sm:text-4xl tracking-tight">
             From Your Home to a Pro's Phone
           </h2>
           <p className="mt-4 text-sm sm:text-base text-gray-500 leading-relaxed font-normal">
@@ -29,11 +29,11 @@ export default function Process() {
             </div>
 
             {/* Icon Box */}
-            <div className="w-14 h-14 bg-[#1c2541] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-1">
-              <Home className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 bg-[#102050] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-1">
+              <Home className="w-6 h-6 text-[#f1b42f]" />
             </div>
 
-            <h3 className="mt-6 font-display font-bold text-[#0f172a] text-base relative z-10">
+            <h3 className="mt-6 font-display font-bold text-[#102050] text-base relative z-10">
               You Browse & Search
             </h3>
             <p className="mt-2.5 text-xs text-gray-500 leading-relaxed font-normal max-w-xs relative z-10">
@@ -41,8 +41,8 @@ export default function Process() {
             </p>
 
             {/* Sub-badge */}
-            <div className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold text-sky-600 relative z-10" id="step-badge-1">
-              <MapPin className="w-3.5 h-3.5" />
+            <div className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold text-[#102050] relative z-10" id="step-badge-1">
+              <MapPin className="w-3.5 h-3.5 text-[#f1b42f]" />
               Filter by local neighborhood
             </div>
           </div>
@@ -55,11 +55,11 @@ export default function Process() {
             </div>
 
             {/* Icon Box */}
-            <div className="w-14 h-14 bg-[#1c2541] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-2">
-              <Search className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 bg-[#102050] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-2">
+              <Search className="w-6 h-6 text-[#f1b42f]" />
             </div>
 
-            <h3 className="mt-6 font-display font-bold text-[#0f172a] text-base relative z-10">
+            <h3 className="mt-6 font-display font-bold text-[#102050] text-base relative z-10">
               We Bridge the Connection
             </h3>
             <p className="mt-2.5 text-xs text-gray-500 leading-relaxed font-normal max-w-xs relative z-10">
@@ -81,11 +81,11 @@ export default function Process() {
             </div>
 
             {/* Icon Box */}
-            <div className="w-14 h-14 bg-[#1c2541] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-3">
-              <Smartphone className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 bg-[#102050] rounded-xl flex items-center justify-center shadow-md relative z-10 hover:scale-105 transition-transform" id="step-icon-3">
+              <Smartphone className="w-6 h-6 text-[#f1b42f]" />
             </div>
 
-            <h3 className="mt-6 font-display font-bold text-[#0f172a] text-base relative z-10">
+            <h3 className="mt-6 font-display font-bold text-[#102050] text-base relative z-10">
               Direct Agreement
             </h3>
             <p className="mt-2.5 text-xs text-gray-500 leading-relaxed font-normal max-w-xs relative z-10">
@@ -93,8 +93,8 @@ export default function Process() {
             </p>
 
             {/* Sub-badge */}
-            <div className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold text-sky-600 relative z-10" id="step-badge-3">
-              <Clock className="w-3.5 h-3.5" />
+            <div className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold text-[#102050] relative z-10" id="step-badge-3">
+              <Clock className="w-3.5 h-3.5 text-[#f1b42f]" />
               No platform booking commissions
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function Process() {
               <Check className="w-6 h-6 text-white stroke-[3px]" />
             </div>
 
-            <h3 className="mt-6 font-display font-bold text-[#0f172a] text-base relative z-10">
+            <h3 className="mt-6 font-display font-bold text-[#102050] text-base relative z-10">
               Transact & Rate Directly
             </h3>
             <p className="mt-2.5 text-xs text-gray-500 leading-relaxed font-normal max-w-xs relative z-10">

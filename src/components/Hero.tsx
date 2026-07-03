@@ -42,7 +42,7 @@ export default function Hero({
 
   return (
     <section 
-      className="relative bg-gradient-to-br from-[#2a2b30] via-[#1d1e22] to-[#24252a] animate-gradient-bg text-zinc-100 pt-20 pb-20 overflow-hidden border-b border-zinc-900" 
+      className="relative bg-gradient-to-br from-[#1b2c5c] via-[#102050] to-[#0a1535] animate-gradient-bg text-zinc-100 pt-20 pb-20 overflow-hidden border-b border-[#0a1128]" 
       id="hero-section"
     >
       <style>{`
@@ -86,7 +86,7 @@ export default function Hero({
 
       {/* Oversized subtle watermark typography */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0" id="hero-watermark">
-        <span className="font-display font-black text-[13vw] tracking-[0.18em] text-white opacity-[0.03] uppercase">
+        <span className="font-display font-black text-[13vw] tracking-[0.18em] text-[#f1b42f] opacity-[0.025] uppercase">
           JAMSHEDPUR
         </span>
       </div>
@@ -99,7 +99,7 @@ export default function Hero({
           id="trusted-badge"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          Trusted by 100+ households in Jamshedpur !!
+          Trusted by 12,000+ households in Jamshedpur
         </div>
 
         {/* Big Display Headings */}
@@ -165,7 +165,7 @@ export default function Hero({
                         onNeighborhoodSelect(nh);
                         setIsLocationOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 ${selectedNeighborhood === nh ? 'bg-zinc-100 text-zinc-900 font-semibold' : ''}`}
+                      className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-gray-50 ${selectedNeighborhood === nh ? 'bg-[#f1b42f]/10 text-[#102050] font-semibold' : ''}`}
                     >
                       {nh}
                     </button>
@@ -191,7 +191,7 @@ export default function Hero({
           {/* Find Pros Button */}
           <button
             type="submit"
-            className="px-8 py-3.5 bg-zinc-950 hover:bg-zinc-900 text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-zinc-900/20 transition-all duration-150 shrink-0 cursor-pointer"
+            className="px-8 py-3.5 bg-[#f1b42f] hover:bg-[#fabc2c] text-[#102050] text-sm font-extrabold rounded-lg shadow-lg hover:shadow-[#f1b42f]/20 transition-all duration-150 shrink-0 cursor-pointer"
             id="find-pros-submit-btn"
           >
             Find Pros

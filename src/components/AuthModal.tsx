@@ -133,11 +133,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
         {/* Header */}
         <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between shrink-0" id="auth-modal-header">
           <div>
-            <h3 className="font-display font-extrabold text-[#0f172a] text-lg">
+            <h3 className="font-display font-extrabold text-[#102050] text-lg">
               {isSignUp ? 'Create Visitor Account' : 'Sign In'}
             </h3>
             <p className="text-xs text-gray-400 font-medium mt-0.5">
-              {isSignUp ? 'Register to save your profile in our local database' : 'Access your Go Jamshedpur profile'}
+              {isSignUp ? 'Register to save your profile in our local database' : 'Access your Jamshedpur Connect profile'}
             </p>
           </div>
           <button 
@@ -174,7 +174,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
               <>
                 {/* Full Name */}
                 <div className="flex flex-col">
-                  <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-1.5">
+                  <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-1.5">
                     Your Full Name
                   </label>
                   <div className="relative">
@@ -185,14 +185,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Sparsh Kumar"
-                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#102050] placeholder-gray-400 font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 {/* WhatsApp Number */}
                 <div className="flex flex-col">
-                  <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-1.5">
+                  <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-1.5">
                     WhatsApp / Phone Number
                   </label>
                   <div className="relative">
@@ -203,14 +203,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#102050] placeholder-gray-400 font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Neighborhood Locality */}
                 <div className="flex flex-col">
-                  <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-1.5">
+                  <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-1.5">
                     Your Local Area / Neighborhood
                   </label>
                   <div className="relative">
@@ -219,7 +219,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                       value={neighborhood}
                       onChange={(e) => setNeighborhood(e.target.value)}
                       required
-                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#0f172a] font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all appearance-none"
+                      className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#102050] font-medium outline-none focus:border-[#102050] focus:bg-white transition-all appearance-none"
                     >
                       <option value="">Select your locality</option>
                       {JAMSHEDPUR_NEIGHBORHOODS.map((area) => (
@@ -233,7 +233,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 
             {/* Email Address */}
             <div className="flex flex-col">
-              <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-1.5">
+              <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-1.5">
                 Email Address
               </label>
               <div className="relative">
@@ -244,14 +244,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#102050] placeholder-gray-400 font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                 />
               </div>
             </div>
 
             {/* Password */}
             <div className="flex flex-col">
-              <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-1.5">
+              <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-1.5">
                 Password
               </label>
               <div className="relative">
@@ -262,7 +262,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm text-[#102050] placeholder-gray-400 font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                 />
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
             <button
               type="submit"
               disabled={isLoading || !!successMsg}
-              className="w-full bg-[#0f172a] hover:bg-[#1e293b] text-white py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4 cursor-pointer"
+              className="w-full bg-[#102050] hover:bg-[#1b356e] text-white py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-4 cursor-pointer"
               id="auth-submit-btn"
             >
               {isLoading ? (
@@ -289,18 +289,18 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
                 <button
                   type="button"
                   onClick={() => setIsSignUp(false)}
-                  className="text-sky-600 font-bold hover:underline ml-1 cursor-pointer"
+                  className="text-[#102050] font-bold hover:text-[#f1b42f] underline decoration-[#f1b42f] ml-1 cursor-pointer"
                 >
                   Sign In here
                 </button>
               </p>
             ) : (
               <p>
-                First time visiting Go Jamshedpur?{' '}
+                First time visiting Jamshedpur Connect?{' '}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(true)}
-                  className="text-sky-600 font-bold hover:underline ml-1 cursor-pointer"
+                  className="text-[#102050] font-bold hover:text-[#f1b42f] underline decoration-[#f1b42f] ml-1 cursor-pointer"
                 >
                   Create Account / Register Here
                 </button>
@@ -310,7 +310,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 
           {/* Extra Database persistence note */}
           <div className="mt-6 bg-slate-50 border border-slate-100 rounded-xl p-3 text-[10px] text-gray-400 leading-normal">
-            <strong>Database Status:</strong> Active local registry storage. Accounts are automatically saved and persisted across browser sessions. Go Jamshedpur does not share your contact credentials with third parties.
+            <strong>Database Status:</strong> Active local registry storage. Accounts are automatically saved and persisted across browser sessions. Jamshedpur Connect does not share your contact credentials with third parties.
           </div>
 
         </div>

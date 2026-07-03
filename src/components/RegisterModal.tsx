@@ -231,8 +231,8 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
         {step !== 'submitted' && (
           <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between shrink-0">
             <div>
-              <h3 className="font-display font-extrabold text-[#0f172a] text-lg">Partner Onboarding</h3>
-              <p className="text-xs text-gray-400 font-medium mt-0.5">Grow your business with Go Jamshedpur</p>
+              <h3 className="font-display font-extrabold text-[#102050] text-lg">Partner Onboarding</h3>
+              <p className="text-xs text-gray-400 font-medium mt-0.5">Grow your business with Jamshedpur Connect</p>
             </div>
             <button 
               onClick={onClose}
@@ -257,7 +257,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
               )}
 
               <div className="flex flex-col">
-                <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2">Full Name</label>
+                <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">Full Name</label>
                 <div className="relative">
                   <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-400 pointer-events-none" />
                   <input
@@ -266,13 +266,13 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your name"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-11 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-11 pr-4 text-sm text-[#102050] placeholder-gray-400 font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                   />
                 </div>
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2">WhatsApp Number (Verified via SMS)</label>
+                <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">WhatsApp Number (Verified via SMS)</label>
                 <div className="relative">
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400 font-mono">+91</span>
                   <input
@@ -281,18 +281,18 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                     placeholder="Enter 10-digit number"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-14 pr-4 text-sm text-[#0f172a] placeholder-gray-400 font-mono font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-14 pr-4 text-sm text-[#102050] placeholder-gray-400 font-mono font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                   />
                 </div>
                 <p className="text-[10px] text-gray-400 mt-1">We will send a real Firebase SMS verification OTP to this mobile number.</p>
               </div>
 
               <div className="flex flex-col">
-                <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2">Primary Neighborhood Coverage</label>
+                <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">Primary Neighborhood Coverage</label>
                 <select
                   value={neighborhood}
                   onChange={(e) => setNeighborhood(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-sm text-[#0f172a] font-medium outline-none focus:border-[#0f172a] focus:bg-white transition-all appearance-none"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-sm text-[#102050] font-medium outline-none focus:border-[#102050] focus:bg-white transition-all appearance-none"
                 >
                   <option value="">Select location</option>
                   {JAMSHEDPUR_NEIGHBORHOODS.map((area) => (
@@ -307,10 +307,10 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           {step === 'otp' && (
             <div className="space-y-5" id="reg-step-otp">
               <div className="text-center max-w-sm mx-auto space-y-2">
-                <div className="w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center mx-auto text-sky-600 border border-sky-100 shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-[#f1b42f]/10 flex items-center justify-center mx-auto text-[#f1b42f] border border-[#f1b42f]/20 shadow-sm">
                   <Lock className="w-5 h-5" />
                 </div>
-                <h4 className="font-display font-extrabold text-[#0f172a] text-base">Verify your number</h4>
+                <h4 className="font-display font-extrabold text-[#102050] text-base">Verify your number</h4>
                 <p className="text-xs text-gray-500 leading-relaxed font-medium">
                   We have sent a 6-digit verification code to <strong className="text-slate-800">+91 {phone}</strong>
                 </p>
@@ -325,7 +325,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
 
               {/* Code input */}
               <div className="flex flex-col max-w-xs mx-auto">
-                <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2 text-center">
+                <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2 text-center">
                   Enter 6-Digit OTP Code
                 </label>
                 <input
@@ -335,7 +335,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                   value={otpInput}
                   onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
                   placeholder="e.g. 123456"
-                  className="w-full text-center tracking-[0.5em] font-mono font-black bg-gray-50 border border-gray-200 rounded-xl py-3 text-lg text-[#0f172a] outline-none focus:border-[#0f172a] focus:bg-white transition-all"
+                  className="w-full text-center tracking-[0.5em] font-mono font-black bg-gray-50 border border-gray-200 rounded-xl py-3 text-lg text-[#102050] outline-none focus:border-[#102050] focus:bg-white transition-all"
                   id="otp-input-field"
                 />
               </div>
@@ -351,7 +351,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     type="button"
                     onClick={handleSendOtp}
                     disabled={isSendingOtp}
-                    className="inline-flex items-center gap-1.5 text-xs text-sky-600 hover:text-sky-700 font-bold hover:underline cursor-pointer disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 text-xs text-[#102050] hover:text-[#f1b42f] font-bold hover:underline cursor-pointer disabled:opacity-50"
                   >
                     <RefreshCw className={`w-3.5 h-3.5 ${isSendingOtp ? 'animate-spin' : ''}`} />
                     Resend OTP Code
@@ -364,7 +364,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           {/* STEP 2: Trade Selection */}
           {step === 'trade' && (
             <div className="space-y-4" id="reg-step-trade">
-              <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2 block text-center">
+              <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2 block text-center">
                 Select Your Core Profession / Trade
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -384,8 +384,8 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     onClick={() => setTrade(item)}
                     className={`py-4 px-4 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer ${
                       trade === item
-                        ? 'border-[#0f172a] bg-[#0f172a] text-white shadow-sm scale-[1.02]'
-                        : 'border-gray-200 bg-white text-[#1c2541] hover:border-gray-300'
+                        ? 'border-[#102050] bg-[#102050] text-white shadow-sm scale-[1.02]'
+                        : 'border-gray-200 bg-white text-[#102050] hover:border-gray-300'
                     }`}
                   >
                     {item}
@@ -399,13 +399,13 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           {step === 'experience' && (
             <div className="space-y-5" id="reg-step-exp">
               <div className="flex flex-col">
-                <label className="text-xs font-bold text-[#0f172a] uppercase tracking-wide mb-2">
+                <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">
                   Years of Professional Experience
                 </label>
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-sm text-[#0f172a] font-medium outline-none focus:border-[#0f172a]"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 text-sm text-[#102050] font-medium outline-none focus:border-[#102050]"
                 >
                   <option value="1">1 Year or less</option>
                   <option value="3">2 - 4 Years</option>
@@ -417,11 +417,11 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
 
               {/* Verified Badge Declaration */}
               <div className="flex items-start gap-3 bg-gray-50 rounded-xl p-4 border border-gray-100">
-                <Award className="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
+                <Award className="w-5 h-5 text-[#f1b42f] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-xs font-bold text-[#0f172a]">Background Checks & Verification</h4>
+                  <h4 className="text-xs font-bold text-[#102050]">Background Checks & Verification</h4>
                   <p className="text-xs text-gray-500 leading-relaxed font-normal mt-1">
-                    Go Jamshedpur maintains strict safety policies. Partners must present government ID proof, a police clearance certificate, and proof of address before being listed.
+                    Jamshedpur Connect maintains strict safety policies. Partners must present government ID proof, a police clearance certificate, and proof of address before being listed.
                   </p>
                 </div>
               </div>
@@ -432,10 +432,10 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                   type="checkbox"
                   checked={certifications}
                   onChange={(e) => setCertifications(e.target.checked)}
-                  className="w-4 h-4 text-[#0f172a] border-gray-300 rounded focus:ring-[#0f172a]"
+                  className="w-4 h-4 text-[#102050] border-gray-300 rounded focus:ring-[#102050]"
                 />
                 <span className="text-xs text-gray-600 font-semibold leading-normal">
-                  I agree to undergo standard verification background checks.
+                  I agree to undergo standard police verification background checks.
                 </span>
               </label>
             </div>
@@ -448,7 +448,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                 <Check className="w-8 h-8 text-white stroke-[3px]" />
               </div>
               <div>
-                <h3 className="font-display font-extrabold text-[#0f172a] text-2xl tracking-tight">
+                <h3 className="font-display font-extrabold text-[#102050] text-2xl tracking-tight">
                   Application Submitted!
                 </h3>
                 <p className="mt-3 text-sm text-gray-500 font-medium max-w-sm leading-relaxed mx-auto">
@@ -458,24 +458,24 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
 
               {/* Next Steps Box */}
               <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-left text-xs max-w-sm mx-auto space-y-3">
-                <h4 className="font-bold text-[#0f172a] uppercase tracking-wider text-[10px]">What happens next?</h4>
+                <h4 className="font-bold text-[#102050] uppercase tracking-wider text-[10px]">What happens next?</h4>
                 <div className="flex gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-[10px] shrink-0">1</span>
+                  <span className="w-5 h-5 rounded-full bg-[#f1b42f]/10 text-[#f1b42f] flex items-center justify-center font-bold text-[10px] shrink-0">1</span>
                   <p className="text-gray-600 leading-normal font-medium">Verify your trade certification and photo identity proof.</p>
                 </div>
                 <div className="flex gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-[10px] shrink-0">2</span>
-                  <p className="text-gray-600 leading-normal font-medium">Undergo standard background validation clearance.</p>
+                  <span className="w-5 h-5 rounded-full bg-[#f1b42f]/10 text-[#f1b42f] flex items-center justify-center font-bold text-[10px] shrink-0">2</span>
+                  <p className="text-gray-600 leading-normal font-medium">Undergo standard local police background validation clearance.</p>
                 </div>
                 <div className="flex gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-[10px] shrink-0">3</span>
-                  <p className="text-gray-600 leading-normal font-medium">Get listed on Go Jamshedpur and receive job requests instantly!</p>
+                  <span className="w-5 h-5 rounded-full bg-[#f1b42f]/10 text-[#f1b42f] flex items-center justify-center font-bold text-[10px] shrink-0">3</span>
+                  <p className="text-gray-600 leading-normal font-medium">Get listed on Jamshedpur Connect and receive job requests instantly!</p>
                 </div>
               </div>
 
               <button
                 onClick={handleReset}
-                className="w-full bg-[#0f172a] hover:bg-[#1e293b] text-white py-3.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
+                className="w-full bg-[#102050] hover:bg-[#1b356e] text-white py-3.5 rounded-xl text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer"
               >
                 Close Window
               </button>
@@ -507,7 +507,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                 (step === 'trade' && !trade) ||
                 (step === 'experience' && !certifications)
               }
-              className="bg-[#0f172a] hover:bg-[#1e293b] text-white px-6 py-3 rounded-lg text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1.5"
+              className="bg-[#102050] hover:bg-[#1b356e] text-white px-6 py-3 rounded-lg text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center gap-1.5"
             >
               {isSendingOtp || isVerifying ? (
                 <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

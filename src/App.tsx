@@ -80,20 +80,20 @@ export default function App() {
 
   if (isPageLoading) {
     return (
-      <div className="fixed inset-0 bg-[#000000] text-white flex flex-col items-center justify-center p-6 z-[9999]" id="full-page-splash-screen">
-        {/* Soft radial grey/white accent glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+      <div className="fixed inset-0 bg-[#102050] text-white flex flex-col items-center justify-center p-6 z-[9999]" id="full-page-splash-screen">
+        {/* Soft radial gold accent glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(241,180,47,0.08)_0%,transparent_70%)] pointer-events-none" />
         
         {/* Additional peripheral neutral glows */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-zinc-800/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-neutral-800/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#102050]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#f1b42f]/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
           {/* Logo Container with active entrance and metallic pulsing glow effect */}
           <div className="relative flex items-center justify-center mb-1 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-zinc-500 via-neutral-300 to-zinc-600 p-[2px] shadow-[0_0_30px_rgba(255,255,255,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate]">
-              <div className="w-full h-full bg-[#000000] rounded-[14px] flex items-center justify-center">
-                <span className="font-display font-black text-xl bg-gradient-to-r from-white via-zinc-200 to-neutral-400 bg-clip-text text-transparent">JC</span>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#f1b42f] via-white to-[#f1b42f] p-[2px] shadow-[0_0_30px_rgba(241,180,47,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate]">
+              <div className="w-full h-full bg-[#102050] rounded-[14px] flex items-center justify-center">
+                <span className="font-display font-black text-xl text-[#f1b42f]">JC</span>
               </div>
             </div>
           </div>
@@ -101,24 +101,24 @@ export default function App() {
           <div className="space-y-3.5">
             {/* Main Branding - Elegant scale/fade entrance */}
             <h1 className="text-3xl sm:text-4xl font-display font-extrabold tracking-tight text-white animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_0.1s_both]">
-              Go <span className="bg-gradient-to-r from-white via-zinc-300 to-neutral-400 bg-clip-text text-transparent">Jamshedpur</span>
+              Jamshedpur <span className="bg-gradient-to-r from-[#f1b42f] via-white to-white bg-clip-text text-transparent">Connect</span>
             </h1>
             
             {/* Tagline - Sequenced fade & slide-in entrance */}
-            <p className="text-xs text-neutral-300 font-mono tracking-[0.25em] font-bold uppercase animate-[tagline-entrance_0.5s_cubic-bezier(0.16,1,0.3,1)_0.35s_both]">
+            <p className="text-xs text-[#f1b42f] font-mono tracking-[0.25em] font-bold uppercase animate-[tagline-entrance_0.5s_cubic-bezier(0.16,1,0.3,1)_0.35s_both]">
               "We take no cuts"
             </p>
           </div>
 
           {/* Tactile progress indicator - Thicker bar with silver-gradient sweep */}
-          <div className="w-56 h-[5px] bg-zinc-900 rounded-full overflow-hidden relative shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)] animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
-            <div className="absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-zinc-500 via-neutral-200 to-white shadow-[0_0_12px_rgba(255,255,255,0.45)] animate-[progress_2s_cubic-bezier(0.22,1,0.36,1)_forwards]" />
+          <div className="w-56 h-[5px] bg-[#0a1128] rounded-full overflow-hidden relative shadow-[inset_0_1px_2px_rgba(0,0,0,0.8)] animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_0.2s_both]">
+            <div className="absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-[#f1b42f] via-white to-[#f1b42f] shadow-[0_0_12px_rgba(241,180,47,0.45)] animate-[progress_2s_cubic-bezier(0.22,1,0.36,1)_forwards]" />
           </div>
 
           {/* Staggered peer-to-peer highlights emphasizing direct connectivity */}
-          <div className="text-xs text-zinc-400 font-medium tracking-wide space-y-1.5 pt-1 animate-[tagline-entrance_0.5s_cubic-bezier(0.16,1,0.3,1)_0.55s_both]">
-            <p className="text-neutral-200 font-semibold">100% Peer-to-Peer Connections</p>
-            <p className="text-[10px] text-zinc-500 font-medium">Direct WhatsApp • Zero Commissions • Verified Listings</p>
+          <div className="text-xs text-zinc-300 font-medium tracking-wide space-y-1.5 pt-1 animate-[tagline-entrance_0.5s_cubic-bezier(0.16,1,0.3,1)_0.55s_both]">
+            <p className="text-[#f1b42f] font-bold">100% Peer-to-Peer Connections</p>
+            <p className="text-[10px] text-zinc-400 font-medium">Direct WhatsApp • Zero Commissions • Verified Listings</p>
           </div>
         </div>
 
@@ -133,8 +133,8 @@ export default function App() {
             100% { opacity: 1; transform: translateY(0); }
           }
           @keyframes pulse-glow {
-            0% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08)); }
-            100% { filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25)) drop-shadow(0 0 8px rgba(156, 163, 175, 0.15)); }
+            0% { filter: drop-shadow(0 0 10px rgba(241, 180, 47, 0.08)); }
+            100% { filter: drop-shadow(0 0 25px rgba(241, 180, 47, 0.25)) drop-shadow(0 0 8px rgba(241, 180, 47, 0.15)); }
           }
           @keyframes progress {
             0% { width: 0%; }
@@ -146,9 +146,9 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white font-sans antialiased text-[#0f172a] selection:bg-sky-200" id="app-root-wrapper">
+    <div className="min-h-screen bg-white font-sans antialiased text-[#102050] selection:bg-[#f1b42f]/30" id="app-root-wrapper">
       {/* Top Banner Accent Line */}
-      <div className="h-1.5 bg-gradient-to-r from-sky-400 via-[#1c2541] to-emerald-400 w-full" id="top-accent-banner" />
+      <div className="h-1.5 bg-gradient-to-r from-[#f1b42f] via-[#102050] to-[#f1b42f] w-full" id="top-accent-banner" />
 
       {/* Navigation Header */}
       <Header 

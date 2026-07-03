@@ -7,7 +7,7 @@ interface BusinessOnboardingProps {
 export default function BusinessOnboarding({ onOpenRegister }: BusinessOnboardingProps) {
   return (
     <section 
-      className="relative bg-gradient-to-r from-[#0b132b] via-[#111a36] to-[#0f172a] text-white py-20 overflow-hidden" 
+      className="relative bg-gradient-to-r from-[#0a1128] via-[#102050] to-[#1b356e] text-white py-20 overflow-hidden" 
       id="pro-banner-section"
     >
       {/* Background Image of worker overlaid */}
@@ -19,17 +19,17 @@ export default function BusinessOnboarding({ onOpenRegister }: BusinessOnboardin
         id="onboarding-bg-image"
       />
       {/* Absolute gradient fade */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0b132b] via-[#0b132ba8] to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a1128] via-[#0a1128]/70 to-transparent z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" id="onboarding-container">
         <div className="max-w-2xl" id="onboarding-content-block">
           
           {/* For Skilled Professionals Pill Badge */}
           <div 
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-emerald-500 text-[11px] font-bold text-white tracking-wide mb-6 uppercase shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#f1b42f] text-[11px] font-extrabold text-[#102050] tracking-wide mb-6 uppercase shadow-sm"
             id="onboarding-pill-badge"
           >
-            <Briefcase className="w-3.5 h-3.5" />
+            <Briefcase className="w-3.5 h-3.5 text-[#102050]" />
             For Skilled Professionals
           </div>
 
@@ -80,10 +80,10 @@ export default function BusinessOnboarding({ onOpenRegister }: BusinessOnboardin
             {/* Register white filled button */}
             <button
               onClick={onOpenRegister}
-              className="flex items-center gap-2 bg-white hover:bg-gray-100 text-[#0f172a] px-6 py-3.5 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="flex items-center gap-2 bg-white hover:bg-[#f1b42f] text-[#102050] px-6 py-3.5 rounded-lg text-sm font-extrabold transition-all shadow-md hover:shadow-lg cursor-pointer"
               id="onboarding-register-btn"
             >
-              <UserPlus className="w-4 h-4 text-[#0f172a]" />
+              <UserPlus className="w-4 h-4 text-[#102050]" />
               Register as a Provider
             </button>
 

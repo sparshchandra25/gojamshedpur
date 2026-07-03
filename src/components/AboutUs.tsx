@@ -3,20 +3,20 @@ import { Network, Handshake, AlertTriangle, MessageSquareCode } from 'lucide-rea
 export default function AboutUs() {
   return (
     <section 
-      className="bg-gradient-to-b from-sky-50/80 via-sky-50/30 to-white border-t border-b border-sky-100/70 py-20" 
+      className="bg-gradient-to-b from-[#102050]/5 via-white to-white border-t border-b border-[#102050]/10 py-20" 
       id="about-us-bridge-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="about-us-container">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16" id="about-us-header">
-          <span className="text-[11px] font-bold text-sky-600 bg-sky-100/60 px-3 py-1 rounded-full tracking-widest uppercase inline-block mb-3 leading-none">
+          <span className="text-[11px] font-bold text-[#102050] bg-[#f1b42f]/20 px-3 py-1 rounded-full tracking-widest uppercase inline-block mb-3 leading-none">
             OUR MISSION & DISCLOSURE
           </span>
-          <h2 className="font-display font-extrabold text-[#0f172a] text-3xl sm:text-4xl tracking-tight">
+          <h2 className="font-display font-extrabold text-[#102050] text-3xl sm:text-4xl tracking-tight">
             A Direct Bridge for Jamshedpur Households
           </h2>
-          <p className="mt-4 text-sm text-sky-950/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-sm text-[#102050]/70 max-w-2xl mx-auto leading-relaxed">
             We exist to simplify your daily errands. Learn how we connect you with local experts without any corporate clutter or transactional markups.
           </p>
         </div>
@@ -28,10 +28,10 @@ export default function AboutUs() {
           <div className="lg:col-span-5 space-y-6" id="about-us-cards">
             {/* Mission Card */}
             <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center mb-4">
-                <Network className="w-5 h-5 text-sky-600" />
+              <div className="w-10 h-10 rounded-xl bg-[#102050]/5 flex items-center justify-center mb-4">
+                <Network className="w-5 h-5 text-[#102050]" />
               </div>
-              <h3 className="text-sm font-bold text-[#0f172a] mb-2">Connecting Communities</h3>
+              <h3 className="text-sm font-bold text-[#102050] mb-2">Connecting Communities</h3>
               <p className="text-xs text-gray-500 leading-relaxed">
                 Rather than knocking on neighbors' doors or spending hours searching for reliable help, we display verified contacts directly so you get quick, clean solutions.
               </p>
@@ -42,7 +42,7 @@ export default function AboutUs() {
               <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center mb-4">
                 <Handshake className="w-5 h-5 text-emerald-600" />
               </div>
-              <h3 className="text-sm font-bold text-[#0f172a] mb-2">100% Direct Agreements</h3>
+              <h3 className="text-sm font-bold text-[#102050] mb-2">100% Direct Agreements</h3>
               <p className="text-xs text-gray-500 leading-relaxed">
                 Talk, call, negotiate, and coordinate directly with the technicians. We don't take cuts, we don't control schedules, and we don't hide phone numbers.
               </p>
@@ -51,7 +51,7 @@ export default function AboutUs() {
 
           {/* Right Column: Clear Explanatory Text and Liability Boundaries */}
           <div className="lg:col-span-7 space-y-6" id="about-us-text-block">
-            <h3 className="text-lg font-extrabold text-[#0f172a]">
+            <h3 className="text-lg font-extrabold text-[#102050]">
               Why We Are Simply a Connecting Bridge
             </h3>
             
@@ -78,7 +78,7 @@ export default function AboutUs() {
             </div>
 
             <div className="flex items-center gap-2.5 pt-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
-              <MessageSquareCode className="w-4 h-4 text-sky-500" />
+              <MessageSquareCode className="w-4 h-4 text-[#f1b42f]" />
               <span>Keeping Local Trades Direct & Independent</span>
             </div>
           </div>
