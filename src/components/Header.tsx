@@ -35,8 +35,8 @@ export default function Header({
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           id="header-logo-container"
         >
-          <div className="w-10 h-10 bg-[#102050] rounded flex items-center justify-center transition-transform group-hover:scale-105" id="header-logo-badge">
-            <Zap className="w-6 h-6 text-[#f1b42f] fill-[#f1b42f]" />
+          <div className="w-10 h-10 bg-white rounded flex items-center justify-center transition-transform group-hover:scale-105 border border-gray-100 shadow-sm" id="header-logo-badge">
+            <img src="logo.png" alt="Go Jamshedpur Logo" className="w-8 h-8 object-contain rounded" />
           </div>
           <div className="flex flex-col" id="header-logo-text">
             <span className="font-display font-extrabold text-[#102050] text-lg tracking-tight leading-none">

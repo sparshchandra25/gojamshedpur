@@ -91,10 +91,8 @@ export default function App() {
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
           {/* Logo Container with active entrance and metallic pulsing glow effect */}
           <div className="relative flex items-center justify-center mb-1 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#f1b42f] via-white to-[#f1b42f] p-[2px] shadow-[0_0_30px_rgba(241,180,47,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate]">
-              <div className="w-full h-full bg-[#102050] rounded-[14px] flex items-center justify-center">
-                <span className="font-display font-black text-xl text-[#f1b42f]">Go J</span>
-              </div>
+            <div className="w-20 h-20 rounded-2xl bg-white p-2 shadow-[0_0_30px_rgba(241,180,47,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate] flex items-center justify-center">
+              <img src="logo.png" alt="Go Jamshedpur Logo" className="w-full h-full object-contain rounded-xl" />
             </div>
           </div>
 
