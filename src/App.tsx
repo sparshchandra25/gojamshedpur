@@ -89,12 +89,17 @@ export default function App() {
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#f1b42f]/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
-          {/* Logo Container with active entrance and metallic pulsing glow effect */}
-          <div className="relative flex items-center justify-center mb-1 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-            <div className="w-20 h-20 rounded-2xl bg-white p-2 shadow-[0_0_30px_rgba(241,180,47,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate] flex items-center justify-center">
-              <img src="logo.png" alt="Go Jamshedpur Logo" className="w-full h-full object-contain rounded-xl" />
-            </div>
-          </div>
+        {/* Logo Container with active entrance and metallic pulsing glow effect */}
+<div className="relative flex items-center justify-center mb-4 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
+  {/* Removed the restrictive w-20 h-20 bg-white box so the logo can breathe */}
+  <div className="w-48 h-24 sm:w-56 sm:h-28 flex items-center justify-center filter drop-shadow-[0_0_25px_rgba(241,180,47,0.3)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate]">
+    <img 
+      src="logo.png" 
+      alt="Go Jamshedpur Logo" 
+      className="w-full h-full object-contain" 
+    />
+  </div>
+</div>
 
           <div className="space-y-3.5">
             {/* Main Branding - Elegant scale/fade entrance */}
