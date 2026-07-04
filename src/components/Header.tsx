@@ -40,10 +40,10 @@ export default function Header({
           </div>
           <div className="flex flex-col" id="header-logo-text">
             <span className="font-display font-extrabold text-[#102050] text-lg tracking-tight leading-none">
-              Jamshedpur
+              Go
             </span>
             <span className="font-display font-semibold text-[#f1b42f] text-xs tracking-widest uppercase mt-0.5 leading-none">
-              CONNECT
+              JAMSHEDPUR
             </span>
           </div>
         </div>
