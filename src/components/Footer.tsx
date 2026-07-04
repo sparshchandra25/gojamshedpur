@@ -157,7 +157,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500" id="footer-sub-bar">
           <div className="space-y-1" id="footer-credits-container">
             <p id="footer-credits">
-              © 2025 Jamshedpur Connect. All rights reserved. Made with ❤️ by students in Jamshedpur.
+              © 2025 Go Jamshedpur. All rights reserved. Made with ❤️ by students in Jamshedpur.
             </p>
             <p className="text-[10px] text-gray-600 font-mono tracking-wider uppercase font-medium" id="footer-creator-credit">
               Created by Flightguy

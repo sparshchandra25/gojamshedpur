@@ -182,7 +182,7 @@ export default function BookingModal({
               <div className="bg-gray-50 rounded-xl p-4 flex gap-3" id="modal-service-info">
                 <Info className="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
                 <p className="text-xs text-gray-500 leading-relaxed font-normal">
-                  All requests placed through Jamshedpur Connect come with our <strong>Money-back Guarantee</strong> and background-verified technicians under standard ₹5 Lakh service insurance cover.
+                  All requests placed through Go Jamshedpur come with our <strong>Money-back Guarantee</strong> and background-verified technicians under standard ₹5 Lakh service insurance cover.
                 </p>
               </div>
             </div>

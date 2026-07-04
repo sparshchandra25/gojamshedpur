@@ -232,7 +232,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           <div className="px-6 py-5 border-b border-gray-100 flex items-center justify-between shrink-0">
             <div>
               <h3 className="font-display font-extrabold text-[#102050] text-lg">Partner Onboarding</h3>
-              <p className="text-xs text-gray-400 font-medium mt-0.5">Grow your business with Jamshedpur Connect</p>
+              <p className="text-xs text-gray-400 font-medium mt-0.5">Grow your business with Go Jamshedpur</p>
             </div>
             <button 
               onClick={onClose}
@@ -421,7 +421,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                 <div>
                   <h4 className="text-xs font-bold text-[#102050]">Background Checks & Verification</h4>
                   <p className="text-xs text-gray-500 leading-relaxed font-normal mt-1">
-                    Jamshedpur Connect maintains strict safety policies. Partners must present government ID proof, a police clearance certificate, and proof of address before being listed.
+                    Go Jamshedpur maintains strict safety policies. Partners must present government ID proof, a police clearance certificate, and proof of address before being listed.
                   </p>
                 </div>
               </div>
@@ -469,7 +469,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                 </div>
                 <div className="flex gap-2.5">
                   <span className="w-5 h-5 rounded-full bg-[#f1b42f]/10 text-[#f1b42f] flex items-center justify-center font-bold text-[10px] shrink-0">3</span>
-                  <p className="text-gray-600 leading-normal font-medium">Get listed on Jamshedpur Connect and receive job requests instantly!</p>
+                  <p className="text-gray-600 leading-normal font-medium">Get listed on Go Jamshedpur and receive job requests instantly!</p>
                 </div>
               </div>
 
