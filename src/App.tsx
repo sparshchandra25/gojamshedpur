@@ -89,14 +89,14 @@ export default function App() {
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#f1b42f]/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
-        {/* Logo Container with active entrance and metallic pulsing glow effect */}
+       {/* Logo Container with active entrance and metallic pulsing glow effect */}
 <div className="relative flex items-center justify-center mb-6 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-  {/* Increased width and height significantly to let the transparent graphic scale naturally */}
-  <div className="w-72 h-36 sm:w-80 sm:h-40 flex items-center justify-center filter drop-shadow-[0_0_35px_rgba(241,180,47,0.3)]">
+  {/* Standardizing the display canvas bounding grid box */}
+  <div className="w-64 h-32 sm:w-80 sm:h-40 flex items-center justify-center filter drop-shadow-[0_0_30px_rgba(241,180,47,0.35)]">
     <img 
       src="logo.png" 
       alt="Go Jamshedpur Logo" 
-      className="w-full h-full object-contain mix-blend-screen" 
+      className="w-full h-full object-contain scale-150" 
     />
   </div>
 </div>
