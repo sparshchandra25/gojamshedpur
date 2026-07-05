@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "SupportInquiry": {
+      "title": "Support Inquiry",
+      "description": "User support questions submitted via the direct website support form in the FAQ section.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the user asking the question."
+        },
+        "contact": {
+          "type": "string",
+          "description": "The user's email address or phone number."
+        },
+        "category": {
+          "type": "string",
+          "description": "The topic or category of the inquiry."
+        },
+        "message": {
+          "type": "string",
+          "description": "The message body containing the question."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the inquiry was submitted."
+        }
+      },
+      "required": ["name", "contact", "category", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/support_inquiries/{inquiryId}": {
+      "schema": "SupportInquiry",
+      "description": "Collection of all direct website support queries."
+    }
+  }
+}

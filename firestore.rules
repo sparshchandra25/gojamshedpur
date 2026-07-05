@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Support inquiries collection rules
+    match /support_inquiries/{inquiryId} {
+      // Public is allowed to submit inquiries with strict schema verification
+      allow create: if request.resource.data.keys().hasAll(['name', 'contact', 'category', 'message', 'createdAt'])
+                    && request.resource.data.keys().size() == 5
+                    && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 150
+                    && request.resource.data.contact is string && request.resource.data.contact.size() > 0 && request.resource.data.contact.size() <= 150
+                    && request.resource.data.category is string && request.resource.data.category.size() > 0 && request.resource.data.category.size() <= 100
+                    && request.resource.data.message is string && request.resource.data.message.size() > 0 && request.resource.data.message.size() <= 4000
+                    && request.resource.data.createdAt == request.time;
+
+      // Prevent unauthorized reading or editing of other people's support submissions
+      allow read, update, delete: if false;
+    }
+  }
+}
