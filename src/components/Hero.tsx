@@ -99,7 +99,7 @@ export default function Hero({
           id="trusted-badge"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          Trusted by 12,000+ households in Jamshedpur
+          Trusted by 500+ households in Jamshedpur
         </div>
 
         {/* Big Display Headings */}
