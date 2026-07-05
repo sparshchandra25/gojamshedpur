@@ -8,6 +8,7 @@ import Process from './components/Process';
 import Reviews from './components/Reviews';
 import AboutUs from './components/AboutUs';
 import BusinessOnboarding from './components/BusinessOnboarding';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import RegisterModal from './components/RegisterModal';
@@ -89,17 +90,12 @@ export default function App() {
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-[#f1b42f]/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
-      {/* Logo Container with active entrance and metallic pulsing glow effect */}
-<div className="relative flex items-center justify-center mb-2 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-  {/* Standardizing the display canvas bounding grid box */}
-  <div className="w-64 h-32 sm:w-80 sm:h-40 flex items-center justify-center filter drop-shadow-[0_0_30px_rgba(241,180,47,0.35)]">
-    <img 
-      src="logo.png" 
-      alt="Go Jamshedpur Logo" 
-      className="w-full h-full object-contain scale-150 translate-y-3" 
-    />
-  </div>
-</div>
+          {/* Logo Container with active entrance and metallic pulsing glow effect */}
+          <div className="relative flex items-center justify-center mb-1 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
+            <div className="w-20 h-20 rounded-2xl bg-white p-2 shadow-[0_0_30px_rgba(241,180,47,0.15)] animate-[pulse-glow_2s_infinite_ease-in-out_alternate] flex items-center justify-center">
+              <img src="logo.png" alt="Go Jamshedpur Logo" className="w-full h-full object-contain rounded-xl" />
+            </div>
+          </div>
 
           <div className="space-y-3.5">
             {/* Main Branding - Elegant scale/fade entrance */}
@@ -195,6 +191,9 @@ export default function App() {
 
         {/* Customer reviews and testimonials */}
         <Reviews />
+
+        {/* Frequently Asked Questions */}
+        <FAQ />
 
         {/* Our role as a connecting bridge about section */}
         <AboutUs />
