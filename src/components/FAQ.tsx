@@ -40,8 +40,8 @@ const FAQ_DATA: FAQItem[] = [
   },
   {
     category: 'trust',
-    question: 'What is the standard ₹5 Lakh insurance cover and guarantee?',
-    answer: 'To make your bookings 100% worry-free, all service bookings arranged through our platform are protected by standard service insurance up to ₹5 Lakh. We also offer a Money-back Guarantee if a job is not completed to professional industry standards.'
+    question: 'Is their any insurance or gurantee from your side?',
+    answer: 'No , we do not provide any insurance or guarantee from our side. As we act as a bridge between the consumer and the service provider . All the guarantee is provided by the service provider itself. We do not take any responsibility for any damage or loss caused by the service provider.'
   },
   {
     category: 'booking',
@@ -391,7 +391,7 @@ export default function FAQ() {
                         <input
                           type="text"
                           required
-                          placeholder="e.g. Sparsh Kumar"
+                          placeholder="e.g. Anil Kumar"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-4 py-3 bg-white/10 hover:bg-white/15 focus:bg-white/20 text-white placeholder-gray-400 text-xs sm:text-sm rounded-xl border border-white/10 focus:border-[#f1b42f]/40 focus:ring-2 focus:ring-[#f1b42f]/10 transition-all outline-none"
@@ -404,7 +404,7 @@ export default function FAQ() {
                         <input
                           type="text"
                           required
-                          placeholder="e.g. sparsh@college.com"
+                          placeholder="e.g. anil@gmail.com"
                           value={formData.contact}
                           onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                           className="w-full px-4 py-3 bg-white/10 hover:bg-white/15 focus:bg-white/20 text-white placeholder-gray-400 text-xs sm:text-sm rounded-xl border border-white/10 focus:border-[#f1b42f]/40 focus:ring-2 focus:ring-[#f1b42f]/10 transition-all outline-none"
