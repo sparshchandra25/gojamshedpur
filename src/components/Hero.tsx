@@ -194,7 +194,7 @@ export default function Hero({
             className="px-8 py-3.5 bg-[#f1b42f] hover:bg-[#fabc2c] text-[#102050] text-sm font-extrabold rounded-lg shadow-lg hover:shadow-[#f1b42f]/20 transition-all duration-150 shrink-0 cursor-pointer"
             id="find-pros-submit-btn"
           >
-            Find Pros
+            Find Workers
           </button>
         </form>
 
