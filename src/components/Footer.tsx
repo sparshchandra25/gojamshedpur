@@ -29,7 +29,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
               onClick={scrollToTop}
             >
               <div className="w-9 h-9 bg-white rounded flex items-center justify-center transition-transform group-hover:scale-105 border border-white/10 shadow-sm">
-                <img src="logo.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
+                <img src="logoheaderfooter.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-extrabold text-white text-base tracking-tight leading-none">
@@ -111,7 +111,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
               </li>
               <li>
                 <button onClick={onOpenRegister} className="hover:text-white transition-colors text-left cursor-pointer">
-                  Register as Pro
+                  Register as worker
                 </button>
               </li>
               <li>
@@ -132,11 +132,11 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
             <ul className="space-y-3.5 text-xs text-gray-400 mb-6" id="footer-contact-list">
               <li className="flex items-center gap-3" id="contact-phone">
                 <Phone className="w-4 h-4 text-[#f1b42f] shrink-0" />
-                <span>+91 9876 543 210</span>
+                <span>+91 91421 11975</span>
               </li>
               <li className="flex items-center gap-3" id="contact-email">
                 <Mail className="w-4 h-4 text-[#f1b42f] shrink-0" />
-                <span>hello@gojamshedpur.in</span>
+                <span>gojamshedpur@gmail.com</span>
               </li>
               <li className="flex items-start gap-3" id="contact-address">
                 <MapPin className="w-4 h-4 text-[#f1b42f] shrink-0 mt-0.5" />
@@ -157,7 +157,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500" id="footer-sub-bar">
           <div className="space-y-1" id="footer-credits-container">
             <p id="footer-credits">
-              © 2025 Go Jamshedpur. All rights reserved. Made with ❤️ by students in Jamshedpur.
+              © 2026 Go Jamshedpur. All rights reserved. Made with ❤️ by students in Jamshedpur.
             </p>
             <p className="text-[10px] text-gray-600 font-mono tracking-wider uppercase font-medium" id="footer-creator-credit">
               Created by Flightguy
