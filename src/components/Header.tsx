@@ -69,7 +69,7 @@ export default function Header({
             className="hover:text-[#102050] transition-colors cursor-pointer"
             id="nav-how-it-works"
           >
-            How it Works
+            How we Work
           </button>
           <button 
             onClick={() => scrollToSection('pro-banner-section')} 

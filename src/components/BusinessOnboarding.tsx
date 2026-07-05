@@ -46,8 +46,8 @@ export default function BusinessOnboarding({ onOpenRegister }: BusinessOnboardin
             className="mt-4 text-sm sm:text-base text-gray-300 leading-relaxed font-normal"
             id="onboarding-subtext"
           >
-            Join 500+ local professionals already earning more by getting direct, verified
-            job requests from households across the city. No commissions for your first 3 months.
+            Join 100+ local professionals already earning more by getting direct, verified
+            job requests from households across the city. No commissions for your first 1 month.
           </p>
 
           {/* Core Highlights Rows */}
@@ -89,12 +89,12 @@ export default function BusinessOnboarding({ onOpenRegister }: BusinessOnboardin
 
             {/* Watch outline button */}
             <button
-              onClick={() => alert("Simulating 'How It Works' introduction video. In a live deployment, this opens our onboarding tutorial.")}
+              onClick={() => alert("Simulating 'How we Work' introduction video. In a live deployment, this opens our onboarding tutorial.")}
               className="flex items-center gap-2 border border-white/20 hover:border-white/50 hover:bg-white/5 text-white px-6 py-3.5 rounded-lg text-sm font-bold transition-all cursor-pointer"
               id="onboarding-watch-btn"
             >
               <Play className="w-4 h-4 text-white fill-white" />
-              Watch How It Works
+              Watch How We Work
             </button>
           </div>
 
