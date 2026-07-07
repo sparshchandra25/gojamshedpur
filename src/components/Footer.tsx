@@ -1,4 +1,4 @@
-import { Zap, Facebook, Instagram, MessageCircle, Youtube, Phone, Mail, MapPin } from 'lucide-react';
+import { Zap, Linkedin, Instagram, MessageCircle, Youtube, Phone, Mail, MapPin } from 'lucide-react';
 
 interface FooterProps {
   onOpenBooking: (service?: string) => void;
@@ -48,16 +48,44 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
 
             {/* Social Icons row */}
             <div className="flex items-center gap-3" id="footer-social-links">
-              <a href="#" className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" id="social-fb">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" id="social-ig">
+              <a 
+                href="https://www.instagram.com/gojamshedpur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
+                id="social-ig"
+                title="Instagram"
+              >
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" id="social-wa">
+              <a 
+                href="https://wa.me/919876543210" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
+                id="social-wa"
+                title="WhatsApp"
+              >
                 <MessageCircle className="w-4 h-4" />
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" id="social-yt">
+              <a 
+                href="https://www.linkedin.com/company/gojamshedpur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
+                id="social-li"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@gojamshedpur" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
+                id="social-yt"
+                title="YouTube"
+              >
                 <Youtube className="w-4 h-4" />
               </a>
             </div>
@@ -112,7 +140,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
               </li>
               <li>
                 <button onClick={onOpenRegister} className="hover:text-white transition-colors text-left cursor-pointer">
-                  Register as Worker
+                  Register as Pro
                 </button>
               </li>
               <li>
@@ -158,7 +186,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500" id="footer-sub-bar">
           <div className="space-y-1" id="footer-credits-container">
             <p id="footer-credits">
-              © 2026 Go Jamshedpur. All rights reserved. Made with ❤️ by students in Jamshedpur.
+              © 2025 Go Jamshedpur. All rights reserved. Made with ❤️ by students in Jamshedpur.
             </p>
             <p className="text-[10px] text-gray-600 font-mono tracking-wider uppercase font-medium" id="footer-creator-credit">
               Created by Flightguy
