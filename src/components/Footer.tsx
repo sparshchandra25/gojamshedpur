@@ -3,9 +3,10 @@ import { Zap, Facebook, Instagram, MessageCircle, Youtube, Phone, Mail, MapPin }
 interface FooterProps {
   onOpenBooking: (service?: string) => void;
   onOpenRegister: () => void;
+  onOpenTerms?: () => void;
 }
 
-export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
+export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: FooterProps) {
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -29,7 +30,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
               onClick={scrollToTop}
             >
               <div className="w-9 h-9 bg-white rounded flex items-center justify-center transition-transform group-hover:scale-105 border border-white/10 shadow-sm">
-                <img src="logoheaderfooter.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
+                <img src="logo.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-extrabold text-white text-base tracking-tight leading-none">
@@ -111,7 +112,7 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
               </li>
               <li>
                 <button onClick={onOpenRegister} className="hover:text-white transition-colors text-left cursor-pointer">
-                  Register as worker
+                  Register as Worker
                 </button>
               </li>
               <li>
@@ -165,7 +166,13 @@ export default function Footer({ onOpenBooking, onOpenRegister }: FooterProps) {
           </div>
           <div className="flex items-center gap-5" id="footer-policies">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+            <button 
+              onClick={onOpenTerms} 
+              className="hover:text-white transition-colors cursor-pointer text-left bg-transparent border-none p-0 font-normal text-xs"
+              id="footer-terms-btn"
+            >
+              Terms of Use
+            </button>
             <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
           </div>
         </div>
