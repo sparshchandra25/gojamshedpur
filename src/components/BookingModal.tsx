@@ -145,7 +145,7 @@ export default function BookingModal({
                     <div>
                       <h4 className="text-xs font-bold text-[#102050]">{prefilledPro.name}</h4>
                       <p className="text-[11px] text-gray-500 font-medium mt-0.5">
-                        Starting at ₹{prefilledPro.startingPrice} • Rating {prefilledPro.rating}★
+                        Starting from ₹{prefilledPro.startingPrice} • Rating {prefilledPro.rating}★
                       </p>
                     </div>
                   </div>

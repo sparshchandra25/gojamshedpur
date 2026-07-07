@@ -75,7 +75,7 @@ export const QUICK_SERVICES = [
   { name: 'Pest Control', icon: 'shield' },
   { name: 'Security', icon: 'lock' },
   { name: 'Furniture', icon: 'sofa' },
-  { name: 'Water Tank', icon: 'droplet' },
+  { name: 'Water Tank Delivery', icon: 'droplet' },
   { name: 'Electrician', icon: 'sun' }
 ];
 

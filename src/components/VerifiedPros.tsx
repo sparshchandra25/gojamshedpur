@@ -328,7 +328,7 @@ export default function VerifiedPros({
                   <div className="flex flex-col" id={`pro-price-box-${pro.id}`}>
                     <span className="text-[10px] font-medium text-gray-400 uppercase leading-none">Starting at</span>
                     <span className="text-xs font-semibold text-gray-400 mt-1 leading-none">
-                      <strong className="text-sm font-extrabold text-[#0f172a]">₹{pro.startingPrice}</strong>/visit
+                      <strong className="text-sm font-extrabold text-[#0f172a]">₹{pro.startingPrice}</strong>/
                     </span>
                   </div>
                   <button
