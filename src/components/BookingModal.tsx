@@ -129,7 +129,6 @@ export default function BookingModal({
                   <option value="Pest Control">Pest & Termite Eradication</option>
                   <option value="Carpenter">Carpenter & Furniture setup</option>
                   <option value="Water Tank">Water Tank Sanitization</option>
-                  <option value="Solar">Solar Grid Installation</option>
                 </select>
               </div>
 

@@ -376,7 +376,6 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                   'Painter',
                   'Carpenter',
                   'Pest Control Expert',
-                  'Solar Technician'
                 ].map((item) => (
                   <button
                     key={item}
