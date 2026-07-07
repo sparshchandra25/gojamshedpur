@@ -22,7 +22,7 @@ export default function App() {
   // Terms and conditions acceptance state
   const [hasAcceptedTerms, setHasAcceptedTerms] = useState<boolean>(() => {
     try {
-      return localStorage.getItem('jc_accepted_terms_v2') === 'true';
+      return localStorage.getItem('jc_accepted_terms_v3') === 'true';
     } catch {
       return false;
     }
@@ -251,7 +251,7 @@ export default function App() {
           onDecline={() => setIsTermsDeclined(true)}
           onAccept={() => {
             try {
-              localStorage.setItem('jc_accepted_terms_v2', 'true');
+              localStorage.setItem('jc_accepted_terms_v3', 'true');
             } catch (e) {
               console.error(e);
             }

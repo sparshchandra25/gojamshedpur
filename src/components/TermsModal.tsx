@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Shield, ChevronDown, Check, FileText, Lock, Unlock, AlertTriangle, X } from 'lucide-react';
 
 interface TermsModalProps {
@@ -77,19 +76,14 @@ export default function TermsModal({ isOpen, onAccept, onDecline, onClose, isFor
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      <div 
-        className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#102050]/80 backdrop-blur-md p-4 overflow-y-auto"
-        id="terms-overlay-container"
+    <div 
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#102050]/80 backdrop-blur-md p-4 overflow-y-auto animate-[modal-backdrop-in_0.3s_ease-out_forwards]"
+      id="terms-overlay-container"
+    >
+      <div
+        className="bg-white rounded-3xl w-full max-w-2xl border border-gray-100 shadow-2xl relative flex flex-col max-h-[90vh] overflow-hidden animate-[modal-content-in_0.35s_cubic-bezier(0.16,1,0.3,1)_forwards]"
+        id="terms-card-wrapper"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.3, cubicBezier: [0.16, 1, 0.3, 1] }}
-          className="bg-white rounded-3xl w-full max-w-2xl border border-gray-100 shadow-2xl relative flex flex-col max-h-[90vh] overflow-hidden"
-          id="terms-card-wrapper"
-        >
           {/* Header Banner */}
           <div className="bg-gradient-to-r from-[#102050] to-[#1b356e] px-6 py-6 sm:px-8 text-white flex items-center justify-between shrink-0" id="terms-header">
             <div className="flex items-center gap-3">
@@ -327,8 +321,19 @@ export default function TermsModal({ isOpen, onAccept, onDecline, onClose, isFor
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
+        
+        {/* Style block for highly robust native CSS modal animations */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes modal-backdrop-in {
+            from { opacity: 0; backdrop-filter: blur(0px); background-color: rgba(16, 32, 80, 0); }
+            to { opacity: 1; backdrop-filter: blur(12px); background-color: rgba(16, 32, 80, 0.8); }
+          }
+          @keyframes modal-content-in {
+            from { opacity: 0; transform: scale(0.95) translateY(15px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+          }
+        `}} />
       </div>
-    </AnimatePresence>
   );
 }
