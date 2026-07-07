@@ -76,7 +76,7 @@ export const QUICK_SERVICES = [
   { name: 'Security', icon: 'lock' },
   { name: 'Furniture', icon: 'sofa' },
   { name: 'Water Tank', icon: 'droplet' },
-  { name: 'Solar', icon: 'sun' }
+  { name: 'Electrician', icon: 'sun' }
 ];
 
 export const VERIFIED_PROS: Pro[] = [
