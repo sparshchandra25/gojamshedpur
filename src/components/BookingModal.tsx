@@ -181,7 +181,7 @@ export default function BookingModal({
               <div className="bg-gray-50 rounded-xl p-4 flex gap-3" id="modal-service-info">
                 <Info className="w-5 h-5 text-sky-500 shrink-0 mt-0.5" />
                 <p className="text-xs text-gray-500 leading-relaxed font-normal">
-                  Go Jamshedpur acts solely as a platform connecting users with independent service providers . We are not responsible <strong>Not Responsible </strong> for the quality, conduct, pricing, agreements, damages, delays, or outcomes of any services provided. All dealings are solely between the customer and the service provider.
+                  Go Jamshedpur acts solely as a platform connecting users with independent service providers . We are <strong>Not Responsible </strong> for the quality, conduct, pricing, agreements, damages, delays, or outcomes of any services provided. All dealings are solely between the customer and the service provider.
                 </p>
               </div>
             </div>
