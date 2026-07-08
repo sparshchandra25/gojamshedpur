@@ -69,7 +69,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
                 <MessageCircle className="w-4 h-4" />
               </a>
               <a 
-                href="https://www.linkedin.com/company/gojamshedpur" 
+                href="https://www.linkedin.com/in/go-jamshedpur-579785420?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
@@ -79,7 +79,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
                 <Linkedin className="w-4 h-4" />
               </a>
               <a 
-                href="https://www.youtube.com/@gojamshedpur" 
+                href="https://youtube.com/@gojamshedpur?si=S7E_Rct-U0HplNec" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
