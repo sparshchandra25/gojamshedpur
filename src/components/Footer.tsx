@@ -30,7 +30,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
               onClick={scrollToTop}
             >
               <div className="w-9 h-9 bg-white rounded flex items-center justify-center transition-transform group-hover:scale-105 border border-white/10 shadow-sm">
-                <img src="logo.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
+                <img src="logoheaderfooter.png" alt="Go Jamshedpur Logo" className="w-7 h-7 object-contain rounded" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-extrabold text-white text-base tracking-tight leading-none">
