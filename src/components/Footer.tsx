@@ -59,7 +59,7 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: F
                 <Instagram className="w-4 h-4" />
               </a>
               <a 
-                href="https://wa.me/919876543210" 
+                href="https://chat.whatsapp.com/BkSpc0MuSdk8EaJZBG7X3y" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:text-white transition-colors" 
