@@ -13,8 +13,7 @@ import {
   AlertCircle, 
   Loader2 
 } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { api } from '../lib/api';
 
 interface FAQItem {
   question: string;
@@ -86,12 +85,11 @@ export default function FAQ() {
     setSubmitError(null);
 
     try {
-      await addDoc(collection(db, 'support_inquiries'), {
+      await api.submitSupportInquiry({
         name: formData.name,
         contact: formData.contact,
         category: formData.category,
         message: formData.message,
-        createdAt: serverTimestamp(),
       });
       setSubmitSuccess(true);
     } catch (err: any) {

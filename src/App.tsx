@@ -15,6 +15,7 @@ import RegisterModal from './components/RegisterModal';
 import AuthModal from './components/AuthModal';
 import TermsModal from './components/TermsModal';
 import { Pro } from './types';
+import { api } from './lib/api';
 
 export default function App() {
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -30,29 +31,28 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isTermsDeclined, setIsTermsDeclined] = useState(false);
 
-  // Visitor authentication state (persistent database proxy)
-  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; phone: string; neighborhood: string } | null>(() => {
-    try {
-      const saved = localStorage.getItem('jc_current_user');
-      return saved ? JSON.parse(saved) : null;
-    } catch {
-      return null;
-    }
-  });
+  // Visitor authentication state (backed by JWT session, not localStorage)
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; phone: string; neighborhood: string } | null>(null);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  // Simulate initial app resources loading
+  // Simulate initial app resources loading, then attempt to silently restore
+  // an existing session via the backend's httpOnly refresh cookie.
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPageLoading(false);
     }, 2200);
+
+    api
+      .restoreSession()
+      .then(({ user }) => setCurrentUser(user))
+      .catch(() => setCurrentUser(null));
+
     return () => clearTimeout(timer);
   }, []);
 
   const handleSignOut = () => {
-    localStorage.removeItem('jc_current_user');
-    setCurrentUser(null);
+    api.logout().finally(() => setCurrentUser(null));
   };
 
   const handleAuthSuccess = (user: { name: string; email: string; phone: string; neighborhood: string }) => {

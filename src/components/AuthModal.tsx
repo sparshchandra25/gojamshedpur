@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, User, Phone, Mail, Lock, MapPin, CheckCircle2, AlertCircle } from 'lucide-react';
-import { JAMSHEDPUR_NEIGHBORHOODS } from '../data';
+import { api } from '../lib/api';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -17,6 +17,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
+  const [JAMSHEDPUR_NEIGHBORHOODS, setJamshedpurNeighborhoods] = useState<string[]>([]);
   
   // Status states
   const [error, setError] = useState('');
@@ -33,6 +34,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
       setEmail('');
       setPassword('');
       setNeighborhood('');
+      api.getNeighborhoods().then(setJamshedpurNeighborhoods).catch(() => {});
     }
   }, [isOpen]);
 
@@ -44,83 +46,35 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
     setSuccessMsg('');
     setIsLoading(true);
 
-    setTimeout(() => {
-      try {
-        // Simple validation
-        if (!email || !password) {
-          throw new Error('Please fill in all required fields.');
-        }
+    if (!email || !password) {
+      setError('Please fill in all required fields.');
+      setIsLoading(false);
+      return;
+    }
+    if (isSignUp && (!name || !phone)) {
+      setError('Please fill in your name and phone number.');
+      setIsLoading(false);
+      return;
+    }
 
-        if (isSignUp) {
-          if (!name || !phone) {
-            throw new Error('Please fill in your name and phone number.');
-          }
+    const request = isSignUp
+      ? api.signup({ name, email, password, phone, neighborhood })
+      : api.login({ email, password });
 
-          // Get existing users database
-          const existingUsersStr = localStorage.getItem('jc_users') || '[]';
-          const existingUsers = JSON.parse(existingUsersStr);
-
-          // Check if email already registered
-          const emailExists = existingUsers.some((u: any) => u.email.toLowerCase() === email.toLowerCase());
-          if (emailExists) {
-            throw new Error('This email address is already registered. Please Sign In.');
-          }
-
-          // Create new user record
-          const newUser = {
-            id: 'USR-' + Math.floor(100000 + Math.random() * 900000),
-            name,
-            phone,
-            email: email.toLowerCase(),
-            password, // In a simple mock/client-side db, plain text is accepted
-            neighborhood,
-            createdAt: new Date().toISOString()
-          };
-
-          // Save to user database
-          existingUsers.push(newUser);
-          localStorage.setItem('jc_users', JSON.stringify(existingUsers));
-          
-          // Save to active session
-          localStorage.setItem('jc_current_user', JSON.stringify(newUser));
-
-          setSuccessMsg(`Welcome aboard, ${name}! Your account has been saved.`);
-          
-          setTimeout(() => {
-            onAuthSuccess(newUser);
-            onClose();
-          }, 1800);
-
-        } else {
-          // Sign In
-          const existingUsersStr = localStorage.getItem('jc_users') || '[]';
-          const existingUsers = JSON.parse(existingUsersStr);
-
-          // Look for user
-          const user = existingUsers.find(
-            (u: any) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-          );
-
-          if (!user) {
-            throw new Error('Invalid email or password. Please try again or sign up.');
-          }
-
-          // Save to active session
-          localStorage.setItem('jc_current_user', JSON.stringify(user));
-          
-          setSuccessMsg(`Welcome back, ${user.name}!`);
-          
-          setTimeout(() => {
-            onAuthSuccess(user);
-            onClose();
-          }, 1500);
-        }
-      } catch (err: any) {
+    request
+      .then(({ user }) => {
+        setSuccessMsg(isSignUp ? `Welcome aboard, ${user.name}! Your account has been saved.` : `Welcome back, ${user.name}!`);
+        setTimeout(() => {
+          onAuthSuccess(user);
+          onClose();
+        }, isSignUp ? 1800 : 1500);
+      })
+      .catch((err: any) => {
         setError(err.message || 'An error occurred during authentication.');
-      } finally {
+      })
+      .finally(() => {
         setIsLoading(false);
-      }
-    }, 1000); // simulated network latency
+      });
   };
 
   return (
@@ -310,7 +264,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 
           {/* Extra Database persistence note */}
           <div className="mt-6 bg-slate-50 border border-slate-100 rounded-xl p-3 text-[10px] text-gray-400 leading-normal">
-            <strong>Database Status:</strong> Active local registry storage. Accounts are automatically saved and persisted across browser sessions. Go Jamshedpur does not share your contact credentials with third parties.
+            <strong>Database Status:</strong> Secure account storage. Accounts are saved on our servers and persist across devices and browser sessions. Go Jamshedpur does not share your contact credentials with third parties.
           </div>
 
         </div>

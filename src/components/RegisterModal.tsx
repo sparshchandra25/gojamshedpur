@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, User, Phone, Award, Check, Lock, ShieldCheck, AlertCircle, RefreshCw } from 'lucide-react';
-import { JAMSHEDPUR_NEIGHBORHOODS } from '../data';
-import { auth } from '../firebase';
-import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import { api } from '../lib/api';
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -17,52 +15,23 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
   const [trade, setTrade] = useState('');
   const [experience, setExperience] = useState('5');
   const [certifications, setCertifications] = useState(false);
+  const [JAMSHEDPUR_NEIGHBORHOODS, setJamshedpurNeighborhoods] = useState<string[]>([]);
 
   // Verification & validation states
   const [phoneError, setPhoneError] = useState('');
   const [otpInput, setOtpInput] = useState('');
   const [otpError, setOtpError] = useState('');
+  const [submitError, setSubmitError] = useState('');
   
   // Loading and helper states
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [countdown, setCountdown] = useState(0);
 
-  // Refs for recaptcha and confirmation result
-  const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
-  const confirmationResultRef = useRef<any>(null);
-
-  // Initialize invisible Recaptcha Verifier
   useEffect(() => {
-    if (typeof window !== 'undefined' && isOpen) {
-      const container = document.getElementById('recaptcha-container');
-      if (container && !recaptchaVerifierRef.current) {
-        try {
-          recaptchaVerifierRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', {
-            size: 'invisible',
-            callback: () => {
-              // reCAPTCHA solved, ready to proceed
-            },
-            'expired-callback': () => {
-              setPhoneError('reCAPTCHA verification expired. Please submit again.');
-            }
-          });
-        } catch (err: any) {
-          console.error('Error creating invisible RecaptchaVerifier:', err);
-        }
-      }
+    if (isOpen) {
+      api.getNeighborhoods().then(setJamshedpurNeighborhoods).catch(() => {});
     }
-
-    return () => {
-      if (recaptchaVerifierRef.current) {
-        try {
-          recaptchaVerifierRef.current.clear();
-          recaptchaVerifierRef.current = null;
-        } catch (e) {
-          // Ignore clear errors during unmount
-        }
-      }
-    };
   }, [isOpen]);
 
   // Countdown timer for Resend OTP option
@@ -75,7 +44,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
 
   if (!isOpen) return null;
 
-  // Handles sending the real OTP using Firebase Authentication
+  // Handles sending the OTP via our backend (replaces Firebase Authentication)
   const handleSendOtp = async () => {
     // Clean phone number of any non-digit characters for 10-digit validation
     const cleanedPhone = phone.replace(/\D/g, '');
@@ -90,38 +59,15 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     setOtpError('');
 
     try {
-      // Prepend +91 country code for Indian phone verification
-      const formattedPhone = '+91' + cleanedPhone;
+      await api.sendProviderOtp(cleanedPhone);
 
-      if (!recaptchaVerifierRef.current) {
-        recaptchaVerifierRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', {
-          size: 'invisible'
-        });
-      }
-
-      // Send the real SMS code via Firebase
-      const confirmationResult = await signInWithPhoneNumber(auth, formattedPhone, recaptchaVerifierRef.current);
-      confirmationResultRef.current = confirmationResult;
-      
       // Reset input, start 60s countdown, and advance to verification step
       setOtpInput('');
       setCountdown(60);
       setStep('otp');
     } catch (err: any) {
-      console.error('Firebase SMS transmission failure:', err);
-      let errorMsg = 'Failed to send OTP. Please check your network connectivity and try again.';
-      
-      if (err.code === 'auth/invalid-phone-number') {
-        errorMsg = 'Invalid phone number format. Please enter a valid 10-digit mobile number.';
-      } else if (err.code === 'auth/too-many-requests') {
-        errorMsg = 'This number has been temporarily blocked due to too many request attempts. Please try again later.';
-      } else if (err.code === 'auth/captcha-check-failed') {
-        errorMsg = 'reCAPTCHA human validation failed. Please reload the tab and try again.';
-      } else if (err.message && err.message.includes('reCAPTCHA')) {
-        errorMsg = 'reCAPTCHA configuration error. Make sure your domain is registered in Firebase console.';
-      }
-      
-      setPhoneError(errorMsg);
+      console.error('OTP send failure:', err);
+      setPhoneError(err.message || 'Failed to send OTP. Please check your network connectivity and try again.');
     } finally {
       setIsSendingOtp(false);
     }
@@ -139,29 +85,15 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     setOtpError('');
 
     try {
-      if (!confirmationResultRef.current) {
-        throw new Error('Onboarding session expired. Please go back and request a new code.');
-      }
+      // Verify OTP code with our backend (replaces Firebase confirmationResult.confirm)
+      await api.verifyProviderOtp(phone.replace(/\D/g, ''), cleanedCode);
 
-      // Verify OTP code with Firebase
-      const result = await confirmationResultRef.current.confirm(cleanedCode);
-      
-      // Successfully authenticated! Go to profession step
+      // Successfully verified! Go to profession step
       setOtpError('');
       setStep('trade');
     } catch (err: any) {
-      console.error('Firebase OTP confirmation failure:', err);
-      let errorMsg = 'Verification failed. The OTP code you entered is incorrect.';
-      
-      if (err.code === 'auth/invalid-verification-code') {
-        errorMsg = 'Incorrect OTP code. Please enter the correct code sent to your mobile.';
-      } else if (err.code === 'auth/code-expired') {
-        errorMsg = 'This OTP code has expired. Please request a new code.';
-      } else if (err.code === 'auth/session-expired') {
-        errorMsg = 'Your verification session expired. Please go back and request a new code.';
-      }
-      
-      setOtpError(errorMsg);
+      console.error('OTP verification failure:', err);
+      setOtpError(err.message || 'Verification failed. The OTP code you entered is incorrect.');
     } finally {
       setIsVerifying(false);
     }
@@ -178,28 +110,21 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
       setStep('experience');
     } 
     else if (step === 'experience') {
-      // Save provider registration to local db as successfully onboarding
-      try {
-        const existingPros = JSON.parse(localStorage.getItem('jc_pros') || '[]');
-        const newPro = {
-          id: 'PRO-' + Math.floor(100000 + Math.random() * 900000),
+      setSubmitError('');
+      api
+        .completeProviderRegistration({
           name,
-          phone: '+91' + phone.replace(/\D/g, ''),
-          category: trade,
+          phone: phone.replace(/\D/g, ''),
           neighborhood,
-          rating: 5.0,
-          reviews: 0,
-          experience: parseInt(experience, 10),
-          verified: true,
-          status: 'online',
-          onboardedAt: new Date().toISOString()
-        };
-        existingPros.push(newPro);
-        localStorage.setItem('jc_pros', JSON.stringify(existingPros));
-      } catch (err) {
-        console.error('Failed to save to mock db:', err);
-      }
-      setStep('submitted');
+          trade,
+          experienceYears: parseInt(experience, 10),
+          certificationsAgreed: certifications,
+        })
+        .then(() => setStep('submitted'))
+        .catch((err: any) => {
+          console.error('Failed to submit provider application:', err);
+          setSubmitError(err.message || 'Failed to submit your application. Please try again.');
+        });
     }
   };
 
@@ -219,6 +144,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
     setPhoneError('');
     setOtpInput('');
     setOtpError('');
+    setSubmitError('');
     setStep('basic');
     onClose();
   };
@@ -284,7 +210,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 pl-14 pr-4 text-sm text-[#102050] placeholder-gray-400 font-mono font-medium outline-none focus:border-[#102050] focus:bg-white transition-all"
                   />
                 </div>
-                <p className="text-[10px] text-gray-400 mt-1">We will send a real Firebase SMS verification OTP to this mobile number.</p>
+                <p className="text-[10px] text-gray-400 mt-1">We will send a real SMS verification OTP to this mobile number.</p>
               </div>
 
               <div className="flex flex-col">
@@ -397,6 +323,13 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
           {/* STEP 3: Experience details */}
           {step === 'experience' && (
             <div className="space-y-5" id="reg-step-exp">
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 p-3.5 rounded-xl flex items-start gap-2 text-xs font-semibold animate-shake" id="submit-error-banner">
+                  <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                  <span>{submitError}</span>
+                </div>
+              )}
+
               <div className="flex flex-col">
                 <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">
                   Years of Professional Experience

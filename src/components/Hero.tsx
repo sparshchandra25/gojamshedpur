@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ChevronDown, Wrench, Snowflake, Zap, Sparkles, Paintbrush, Shield, Droplets } from 'lucide-react';
-import { JAMSHEDPUR_NEIGHBORHOODS } from '../data';
+import { api } from '../lib/api';
 
 interface HeroProps {
   onSearchChange: (query: string) => void;
@@ -17,6 +17,11 @@ export default function Hero({
 }: HeroProps) {
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [searchVal, setSearchVal] = useState('');
+  const [JAMSHEDPUR_NEIGHBORHOODS, setJamshedpurNeighborhoods] = useState<string[]>([]);
+
+  useEffect(() => {
+    api.getNeighborhoods().then(setJamshedpurNeighborhoods).catch(() => {});
+  }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();

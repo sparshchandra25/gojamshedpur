@@ -1,8 +1,15 @@
+import { useEffect, useState } from 'react';
 import { TreePine, Factory, Mountain, Store } from 'lucide-react';
-import { NEIGHBORHOOD_INFOS } from '../data';
+import { api } from '../lib/api';
+import { NeighborhoodInfo } from '../types';
 
 export default function AboutJamshedpur() {
-  
+  const [NEIGHBORHOOD_INFOS, setNeighborhoodInfos] = useState<NeighborhoodInfo[]>([]);
+
+  useEffect(() => {
+    api.getNeighborhoodZones().then(setNeighborhoodInfos).catch(() => {});
+  }, []);
+
   const getAreaIcon = (iconName: string) => {
     switch (iconName) {
       case 'tree':

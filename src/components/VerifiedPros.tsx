@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, Star, CheckCircle, Phone } from 'lucide-react';
 import { Pro } from '../types';
-import { VERIFIED_PROS } from '../data';
+import { api } from '../lib/api';
 
 interface VerifiedProsProps {
   searchQuery: string;
@@ -19,43 +19,30 @@ export default function VerifiedPros({
   onClearNeighborhood
  }: VerifiedProsProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredPros, setFilteredPros] = useState<Pro[]>([]);
 
-  // Trigger a loading skeleton effect when search or neighborhood filters change
+  // Fetch matching pros from the backend whenever search or neighborhood
+  // filters change. The API performs the same category-group matching
+  // (maintenance/cleaning/home improvement) that used to run client-side
+  // against the hardcoded VERIFIED_PROS array.
   useEffect(() => {
+    let cancelled = false;
     setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 450);
-    return () => clearTimeout(timer);
+    api
+      .getProviders({ search: searchQuery, neighborhood: selectedNeighborhood })
+      .then((pros) => {
+        if (!cancelled) setFilteredPros(pros);
+      })
+      .catch(() => {
+        if (!cancelled) setFilteredPros([]);
+      })
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [searchQuery, selectedNeighborhood]);
-  
-  // Filter pros based on search query and location
-  const filteredPros = VERIFIED_PROS.filter((pro) => {
-    let matchesCategoryGroup = false;
-    const query = searchQuery.toLowerCase();
-    
-    // Group categories mapping
-    if (query === 'maintenance') {
-      matchesCategoryGroup = ['plumber', 'electrician', 'carpenter', 'ac specialist', 'ac specialist'].some(c => pro.category.toLowerCase().includes(c));
-    } else if (query === 'cleaning') {
-      matchesCategoryGroup = ['cleaning', 'cleaner', 'deep cleaning'].some(c => pro.category.toLowerCase().includes(c));
-    } else if (query === 'home improvement') {
-      matchesCategoryGroup = ['painter', 'carpenter', 'technician'].some(c => pro.category.toLowerCase().includes(c));
-    }
-
-    const matchesSearch = searchQuery
-      ? matchesCategoryGroup ||
-        pro.name.toLowerCase().includes(query) ||
-        pro.category.toLowerCase().includes(query) ||
-        pro.bio.toLowerCase().includes(query)
-      : true;
-
-    const matchesNeighborhood = selectedNeighborhood
-      ? pro.neighborhood.toLowerCase() === selectedNeighborhood.toLowerCase()
-      : true;
-
-    return matchesSearch && matchesNeighborhood;
-  });
 
   return (
     <section className="bg-slate-50 py-20 border-b border-gray-100" id="pros-section">

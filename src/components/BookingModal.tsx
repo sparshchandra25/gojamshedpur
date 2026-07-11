@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, Clock, MapPin, Check, Sparkles, Phone, Mail, User, Info } from 'lucide-react';
 import { Pro } from '../types';
-import { JAMSHEDPUR_NEIGHBORHOODS } from '../data';
+import { api } from '../lib/api';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -30,6 +30,14 @@ export default function BookingModal({
   const [userEmail, setUserEmail] = useState('');
   const [notes, setNotes] = useState('');
   const [bookingId, setBookingId] = useState('');
+  const [JAMSHEDPUR_NEIGHBORHOODS, setJamshedpurNeighborhoods] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      api.getNeighborhoods().then(setJamshedpurNeighborhoods).catch(() => {});
+    }
+  }, [isOpen]);
 
   // Update states when modal opens or receives pre-filled data
   useEffect(() => {
@@ -50,6 +58,7 @@ export default function BookingModal({
       setUserEmail(currentUser ? currentUser.email : '');
       setNotes('');
       setBookingId('');
+      setSubmitError('');
     }
   }, [isOpen, prefilledService, prefilledPro, currentUser]);
 
@@ -61,11 +70,28 @@ export default function BookingModal({
     else if (step === 'schedule') setStep('contact');
     else if (step === 'contact') {
       setStep('submitting');
-      // Simulate matching algorithm process
-      setTimeout(() => {
-        setBookingId('JC-' + Math.floor(100000 + Math.random() * 900000));
-        setStep('confirmed');
-      }, 3500); // 3.5 seconds radar scan
+      api
+        .createBooking({
+          serviceName: selectedService,
+          providerId: prefilledPro?.id,
+          neighborhood,
+          address,
+          date,
+          timeSlot,
+          userName,
+          userPhone,
+          userEmail,
+          notes,
+        })
+        .then((booking) => {
+          setBookingId(booking.bookingId);
+          setStep('confirmed');
+        })
+        .catch((err: any) => {
+          console.error('Failed to create booking:', err);
+          setSubmitError(err.message || 'Failed to submit your booking. Please try again.');
+          setStep('contact');
+        });
     }
   };
 
@@ -278,6 +304,12 @@ export default function BookingModal({
           {/* STEP 4: Customer Contact Info */}
           {step === 'contact' && (
             <div className="space-y-5" id="step-contact-panel">
+              {submitError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 p-3.5 rounded-xl flex items-start gap-2 text-xs font-semibold" id="booking-submit-error">
+                  <Info className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                  <span>{submitError}</span>
+                </div>
+              )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col">
                   <label className="text-xs font-bold text-[#102050] uppercase tracking-wide mb-2">

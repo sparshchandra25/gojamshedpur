@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import { ArrowRight, Wrench, Sparkles, Hammer, Snowflake, Shield, Lock, Sofa, Droplets, Sun } from 'lucide-react';
-import { CATEGORIES, QUICK_SERVICES } from '../data';
+import { api } from '../lib/api';
 import { Category } from '../types';
 
 interface CategoriesProps {
@@ -8,7 +9,14 @@ interface CategoriesProps {
 }
 
 export default function Categories({ onSelectCategory, onOpenBooking }: CategoriesProps) {
-  
+  const [CATEGORIES, setCategories] = useState<Category[]>([]);
+  const [QUICK_SERVICES, setQuickServices] = useState<{ name: string; icon: string }[]>([]);
+
+  useEffect(() => {
+    api.getCategories().then(setCategories).catch(() => {});
+    api.getQuickServices().then(setQuickServices).catch(() => {});
+  }, []);
+
   // Icon selector helper
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {

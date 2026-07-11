@@ -1,7 +1,15 @@
+import { useEffect, useState } from 'react';
 import { Star } from 'lucide-react';
-import { REVIEWS } from '../data';
+import { api } from '../lib/api';
+import { Review } from '../types';
 
 export default function Reviews() {
+  const [REVIEWS, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    api.getReviews().then(setReviews).catch(() => {});
+  }, []);
+
   return (
     <section className="bg-white py-20 border-b border-gray-100" id="reviews-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
