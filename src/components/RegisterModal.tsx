@@ -279,7 +279,7 @@ export default function RegisterModal({ isOpen, onClose }: RegisterModalProps) {
                     disabled={isSendingOtp}
                     className="inline-flex items-center gap-1.5 text-xs text-[#102050] hover:text-[#f1b42f] font-bold hover:underline cursor-pointer disabled:opacity-50"
                   >
-                    <RefreshCw className={`w-3.5 h-3.5 ${isSendingOtp ? 'animate-spin' : ''}`} />
+                    <RefreshCw className={⁠ w-3.5 h-3.5 ${isSendingOtp ? 'animate-spin' : ''} ⁠} />
                     Resend OTP Code
                   </button>
                 )}

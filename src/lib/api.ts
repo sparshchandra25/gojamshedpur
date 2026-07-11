@@ -6,7 +6,7 @@
 //
 //  - Access token is kept in memory only (never localStorage) to avoid XSS
 //    token theft; the refresh token lives in an httpOnly cookie set by the
-//    backend and is sent automatically via `credentials: 'include'`.
+//    backend and is sent automatically via ⁠ credentials: 'include' ⁠.
 //  - A 401 triggers exactly one silent refresh + retry.
 //  - Responses are unwrapped from the backend's { success, message, data } envelope.
 
@@ -28,9 +28,9 @@ interface ApiEnvelope<T> {
 async function request<T>(path: string, options: RequestInit = {}, retry = true): Promise<T> {
   const headers = new Headers(options.headers);
   headers.set('Content-Type', 'application/json');
-  if (accessToken) headers.set('Authorization', `Bearer ${accessToken}`);
+  if (accessToken) headers.set('Authorization', ⁠ Bearer ${accessToken} ⁠);
 
-  const res = await fetch(`${BASE_URL}${path}`, { ...options, headers, credentials: 'include' });
+  const res = await fetch(⁠ ${BASE_URL}${path} ⁠, { ...options, headers, credentials: 'include' });
 
   if (res.status === 401 && retry && path !== '/auth/refresh') {
     try {
@@ -55,7 +55,7 @@ async function request<T>(path: string, options: RequestInit = {}, retry = true)
 }
 
 async function refreshToken(): Promise<void> {
-  const res = await fetch(`${BASE_URL}/auth/refresh`, { method: 'POST', credentials: 'include' });
+  const res = await fetch(⁠ ${BASE_URL}/auth/refresh ⁠, { method: 'POST', credentials: 'include' });
   const body: ApiEnvelope<{ accessToken: string }> = await res.json();
   if (!res.ok || !body.success) throw new Error(body.message);
   setAccessToken(body.data.accessToken);
@@ -89,7 +89,7 @@ function getProviders(params: { search?: string; neighborhood?: string; category
   if (params.neighborhood) qs.set('neighborhood', params.neighborhood);
   if (params.category) qs.set('category', params.category);
   qs.set('limit', '50');
-  return request<any[]>(`/providers?${qs.toString()}`);
+  return request<any[]>(⁠ /providers?${qs.toString()} ⁠);
 }
 
 function sendProviderOtp(phone: string) {
@@ -120,7 +120,7 @@ function getReviews(params: { providerId?: string; highlighted?: boolean } = {})
   const qs = new URLSearchParams();
   if (params.providerId) qs.set('providerId', params.providerId);
   if (params.highlighted !== undefined) qs.set('highlighted', String(params.highlighted));
-  return request<any[]>(`/reviews?${qs.toString()}`);
+  return request<any[]>(⁠ /reviews?${qs.toString()} ⁠);
 }
 
 // --- Auth ---------------------------------------------------------------------
