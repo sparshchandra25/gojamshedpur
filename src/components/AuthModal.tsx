@@ -63,7 +63,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
 
     request
       .then(({ user }) => {
-        setSuccessMsg(isSignUp ? `Welcome aboard, ${user.name}! Your account has been saved.` : `Welcome back, ${user.name}!`);
+        setSuccessMsg(isSignUp ? ⁠ Welcome aboard, ${user.name}! Your account has been saved. ⁠ : ⁠ Welcome back, ${user.name}! ⁠);
         setTimeout(() => {
           onAuthSuccess(user);
           onClose();
