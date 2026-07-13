@@ -204,6 +204,16 @@ export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms, onO
               Terms of Use
             </button>
             <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+            {onOpenAdmin && (
+              <button 
+                onClick={onOpenAdmin} 
+                className="hover:text-red-400 text-zinc-500 transition-colors cursor-pointer bg-transparent border-none p-1 rounded hover:bg-white/5 flex items-center justify-center"
+                id="footer-admin-btn"
+                title="Admin Console"
+              >
+                <Lock className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 

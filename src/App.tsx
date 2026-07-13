@@ -14,9 +14,9 @@ import BookingModal from './components/BookingModal';
 import RegisterModal from './components/RegisterModal';
 import AuthModal from './components/AuthModal';
 import TermsModal from './components/TermsModal';
-import { Pro } from './types';
 import UserDashboard from './components/UserDashboard';
 import AdminPanel from './components/AdminPanel';
+import { Pro } from './types';
 
 export default function App() {
   const [isPageLoading, setIsPageLoading] = useState(true);
@@ -178,7 +178,7 @@ export default function App() {
         currentUser={currentUser}
         onOpenAuth={() => setIsAuthOpen(true)}
         onSignOut={handleSignOut}
-        onOpenDashboard={() => setIsDashboardOpen(true)}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* Main Sections Assembly */}
