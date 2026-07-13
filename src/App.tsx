@@ -178,7 +178,7 @@ export default function App() {
         currentUser={currentUser}
         onOpenAuth={() => setIsAuthOpen(true)}
         onSignOut={handleSignOut}
-        onOpenAdmin={() => setIsAdminOpen(true)}
+        onOpenDashboard={() => setIsDashboardOpen(true)}
       />
 
       {/* Main Sections Assembly */}

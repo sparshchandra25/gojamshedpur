@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, Zap, Menu, X, User, LogOut } from 'lucide-react';
+import { Briefcase, Zap, Menu, X, User, LogOut, LayoutDashboard } from 'lucide-react';
 
 interface HeaderProps {
   onOpenBooking: (service?: string) => void;
@@ -7,6 +7,7 @@ interface HeaderProps {
   currentUser: { name: string; email: string; phone: string; neighborhood: string } | null;
   onOpenAuth: () => void;
   onSignOut: () => void;
+  onOpenDashboard: () => void;
 }
 
 export default function Header({ 
@@ -14,7 +15,8 @@ export default function Header({
   onOpenRegister,
   currentUser,
   onOpenAuth,
-  onSignOut
+  onSignOut,
+  onOpenDashboard
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
@@ -62,14 +64,14 @@ export default function Header({
             className="hover:text-[#102050] transition-colors cursor-pointer"
             id="nav-pros"
           >
-            Find Workers
+            Find Pros
           </button>
           <button 
             onClick={() => scrollToSection('how-it-works-section')} 
             className="hover:text-[#102050] transition-colors cursor-pointer"
             id="nav-how-it-works"
           >
-            How we Work
+            How it Works
           </button>
           <button 
             onClick={() => scrollToSection('pro-banner-section')} 
@@ -115,6 +117,15 @@ export default function Header({
               Sign In
             </button>
           )}
+          <button
+            onClick={onOpenDashboard}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-bold text-[#102050] hover:text-[#f1b42f] hover:bg-gray-50 border border-gray-150 rounded-xl transition-all cursor-pointer"
+            title="My Dashboard"
+            id="header-dashboard-btn"
+          >
+            <LayoutDashboard className="w-4 h-4 shrink-0" />
+            <span>My Dashboard</span>
+          </button>
           <button
             onClick={onOpenRegister}
             className="flex items-center gap-2 bg-[#102050] hover:bg-[#1b356e] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-sm hover:shadow-md cursor-pointer"
@@ -204,6 +215,17 @@ export default function Header({
               Sign In / Sign Up
             </button>
           )}
+          <button
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              onOpenDashboard();
+            }}
+            className="w-full flex items-center justify-center gap-2 bg-[#f1b42f]/10 hover:bg-[#f1b42f]/20 text-[#102050] py-3 px-4 rounded-md font-semibold transition-all shadow-sm border border-[#f1b42f]/30"
+            id="mobile-nav-dashboard"
+          >
+            <LayoutDashboard className="w-4 h-4 text-[#f1b42f]" />
+            My Dashboard
+          </button>
           <button
             onClick={() => {
               setIsMobileMenuOpen(false);
