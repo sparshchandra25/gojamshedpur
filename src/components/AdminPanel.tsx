@@ -345,7 +345,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
               <div className="pt-4 border-t border-zinc-100">
                 <p className="text-[10px] text-zinc-400 leading-normal">
-                  💡 Hint for Sandbox Testing: Enter <code className="bg-zinc-100 text-zinc-600 font-mono font-bold px-1.5 py-0.5 rounded">admin123</code> or <code className="bg-zinc-100 text-zinc-600 font-mono font-bold px-1.5 py-0.5 rounded">9876</code> to login.
+                  💡 Hint for Testing Asmeet : Enter <code className="bg-zinc-100 text-zinc-600 font-mono font-bold px-1.5 py-0.5 rounded">admin@123</code> or <code className="bg-zinc-100 text-zinc-600 font-mono font-bold px-1.5 py-0.5 rounded">1234</code> to login.
                 </p>
               </div>
             </div>
