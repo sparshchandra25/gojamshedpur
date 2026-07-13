@@ -216,7 +216,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
   const handleAdminLogin = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (adminPasscode.trim() === 'admin123' || adminPasscode.trim() === '9876') {
+    if (adminPasscode.trim() === 'admin@123' || adminPasscode.trim() === '1234') {
       setIsAuthenticated(true);
       setLoginError('');
       showToast('Admin access granted!');
