@@ -15,7 +15,6 @@ import RegisterModal from './components/RegisterModal';
 import AuthModal from './components/AuthModal';
 import TermsModal from './components/TermsModal';
 import { Pro } from './types';
-import { api } from './lib/api';
 import UserDashboard from './components/UserDashboard';
 import AdminPanel from './components/AdminPanel';
 

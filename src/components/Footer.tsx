@@ -8,7 +8,7 @@ interface FooterProps {
   onOpenAdmin?: () => void;
 }
 
-export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: FooterProps) {
+export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms, onOpenDashboard, onOpenAdmin }: FooterProps) {
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
