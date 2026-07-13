@@ -16,9 +16,13 @@ import AuthModal from './components/AuthModal';
 import TermsModal from './components/TermsModal';
 import { Pro } from './types';
 import { api } from './lib/api';
+import UserDashboard from './components/UserDashboard';
+import AdminPanel from './components/AdminPanel';
 
 export default function App() {
   const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   // Terms and conditions acceptance state
   const [hasAcceptedTerms, setHasAcceptedTerms] = useState<boolean>(() => {
@@ -31,28 +35,29 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isTermsDeclined, setIsTermsDeclined] = useState(false);
 
-  // Visitor authentication state (backed by JWT session, not localStorage)
-  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; phone: string; neighborhood: string } | null>(null);
+  // Visitor authentication state (persistent database proxy)
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; phone: string; neighborhood: string } | null>(() => {
+    try {
+      const saved = localStorage.getItem('jc_current_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  // Simulate initial app resources loading, then attempt to silently restore
-  // an existing session via the backend's httpOnly refresh cookie.
+  // Simulate initial app resources loading
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPageLoading(false);
     }, 2200);
-
-    api
-      .restoreSession()
-      .then(({ user }) => setCurrentUser(user))
-      .catch(() => setCurrentUser(null));
-
     return () => clearTimeout(timer);
   }, []);
 
   const handleSignOut = () => {
-    api.logout().finally(() => setCurrentUser(null));
+    localStorage.removeItem('jc_current_user');
+    setCurrentUser(null);
   };
 
   const handleAuthSuccess = (user: { name: string; email: string; phone: string; neighborhood: string }) => {
@@ -103,16 +108,16 @@ export default function App() {
 
         <div className="text-center max-w-md mx-auto space-y-8 relative z-10 flex flex-col items-center">
           {/* Logo Container with active entrance and metallic pulsing glow effect */}
-<div className="relative flex items-center justify-center mb-2 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
-  {/* Standardizing the display canvas bounding grid box */}
-  <div className="w-64 h-32 sm:w-80 sm:h-40 flex items-center justify-center filter drop-shadow-[0_0_30px_rgba(241,180,47,0.35)]">
-    <img 
-      src="logo.png" 
-      alt="Go Jamshedpur Logo" 
-      className="w-full h-full object-contain scale-150 translate-y-3" 
-    />
-  </div>
-</div>
+          <div className="relative flex items-center justify-center mb-2 animate-[logo-entrance_0.6s_cubic-bezier(0.16,1,0.3,1)_both]">
+            {/* Standardizing the display canvas bounding grid box */}
+            <div className="w-64 h-32 sm:w-80 sm:h-40 flex items-center justify-center filter drop-shadow-[0_0_30px_rgba(241,180,47,0.35)]">
+              <img 
+                src="logo.png" 
+                alt="Go Jamshedpur Logo" 
+                className="w-full h-full object-contain scale-150 translate-y-3" 
+              />
+            </div>
+          </div>
 
           <div className="space-y-3.5">
             {/* Main Branding - Elegant scale/fade entrance */}
@@ -174,6 +179,7 @@ export default function App() {
         currentUser={currentUser}
         onOpenAuth={() => setIsAuthOpen(true)}
         onSignOut={handleSignOut}
+        onOpenDashboard={() => setIsDashboardOpen(true)}
       />
 
       {/* Main Sections Assembly */}
@@ -225,6 +231,8 @@ export default function App() {
         onOpenBooking={(service) => handleOpenBooking(service)} 
         onOpenRegister={handleOpenRegister} 
         onOpenTerms={() => setIsTermsOpen(true)}
+        onOpenDashboard={() => setIsDashboardOpen(true)}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
     </div>
 
@@ -246,6 +254,20 @@ export default function App() {
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
         onAuthSuccess={handleAuthSuccess}
+      />
+
+      <UserDashboard 
+        isOpen={isDashboardOpen}
+        onClose={() => setIsDashboardOpen(false)}
+        currentUser={currentUser}
+        onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenRegister={handleOpenRegister}
+        onSignOut={handleSignOut}
+      />
+
+      <AdminPanel 
+        isOpen={isAdminOpen}
+        onClose={() => setIsAdminOpen(false)}
       />
 
       {/* Terms and Conditions forced overlay on initial visit (after skeletons/splash ends) */}

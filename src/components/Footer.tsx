@@ -1,9 +1,11 @@
-import { Zap, Linkedin, Instagram, MessageCircle, Youtube, Phone, Mail, MapPin } from 'lucide-react';
+import { Zap, Linkedin, Instagram, MessageCircle, Youtube, Phone, Mail, MapPin, Lock } from 'lucide-react';
 
 interface FooterProps {
   onOpenBooking: (service?: string) => void;
   onOpenRegister: () => void;
   onOpenTerms?: () => void;
+  onOpenDashboard?: () => void;
+  onOpenAdmin?: () => void;
 }
 
 export default function Footer({ onOpenBooking, onOpenRegister, onOpenTerms }: FooterProps) {
