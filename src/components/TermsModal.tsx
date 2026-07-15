@@ -270,6 +270,14 @@ export default function TermsModal({ isOpen, onAccept, onDecline, onClose, isFor
                     For questions regarding these Terms & Conditions, please contact Go Jamshedpur Services through the contact details provided on our website.
                   </p>
                 </section>
+
+                <section className="space-y-1 pb-4">
+                  <h3 className="font-display font-bold text-xs sm:text-sm text-[#102050] flex items-center gap-2">
+                    <span className="text-[#f1b42f] font-mono">13.</span> Termination
+                  </h3>
+                  <p className="text-gray-600">
+                    Users and Service Providers agree to indemnify and hold harmless Go Jamshedpur against any claims, damages, or legal expenses arising from their use of the platform or breach of these terms.                  </p>
+                </section>
               </div>
             </div>
 
