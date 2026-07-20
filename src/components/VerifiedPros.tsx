@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Star, CheckCircle, Phone } from 'lucide-react';
+import { ArrowRight, Star, CheckCircle, Phone, ChevronDown, ClipboardList } from 'lucide-react';
 import { Pro } from '../types';
-import { api } from '../lib/api';
+import { VERIFIED_PROS } from '../data';
 
 interface VerifiedProsProps {
   searchQuery: string;
@@ -9,6 +9,76 @@ interface VerifiedProsProps {
   onOpenBooking: (serviceName?: string, selectedPro?: Pro) => void;
   onClearSearch?: () => void;
   onClearNeighborhood?: () => void;
+}
+
+function getQuotations(category: string, startingPrice: number): { item: string; price: number }[] {
+  const norm = category.toLowerCase();
+  if (norm.includes('electrician')) {
+    return [
+      { item: 'Ceiling Fan Installation & Demo', price: startingPrice },
+      { item: 'MCB Tripping Switch Repair', price: Math.round(startingPrice * 0.8) },
+      { item: 'Complete Home Safety Wiring Audit', price: Math.round(startingPrice * 1.5) },
+      { item: 'Inverter Installation & Battery Water', price: Math.round(startingPrice * 1.8) },
+      { item: 'Wall Socket / Switchboard Replacement', price: Math.round(startingPrice * 0.5) }
+    ];
+  } else if (norm.includes('cleaner') || norm.includes('cleaning')) {
+    return [
+      { item: 'Standard Bathroom Sanitization (Per Bath)', price: startingPrice },
+      { item: 'Kitchen Slab & Exhaust Deep Clean', price: Math.round(startingPrice * 1.3) },
+      { item: '1 BHK Full Home Deep Cleaning Service', price: Math.round(startingPrice * 2.2) },
+      { item: 'Sofa Dry Cleaning & Dust Vacuuming', price: Math.round(startingPrice * 0.9) },
+      { item: 'Balcony Jet Wash & Floor Scrubbing', price: Math.round(startingPrice * 0.6) }
+    ];
+  } else if (norm.includes('plumber')) {
+    return [
+      { item: 'Tap Leakage & Washer Replacement', price: startingPrice },
+      { item: 'Flush Tank Mechanism Repair / Replace', price: Math.round(startingPrice * 1.2) },
+      { item: 'Kitchen Sink Clog Removal & Drain Clean', price: Math.round(startingPrice * 0.8) },
+      { item: 'Water Heater / Geyser Installation', price: Math.round(startingPrice * 1.5) },
+      { item: 'Overhead Water Tank Float Valve Setup', price: Math.round(startingPrice * 1.8) }
+    ];
+  } else if (norm.includes('ac specialist')) {
+    return [
+      { item: 'Split / Window AC Foam-Jet Service', price: startingPrice },
+      { item: 'Gas Charging & Leakage Detection', price: Math.round(startingPrice * 3.5) },
+      { item: 'AC Installation / Dismantling Charge', price: Math.round(startingPrice * 1.5) },
+      { item: 'AC Condenser / Compressor Repair', price: Math.round(startingPrice * 2.5) }
+    ];
+  } else if (norm.includes('pest')) {
+    return [
+      { item: 'Standard Cockroach & Ant Eradication', price: startingPrice },
+      { item: 'Bed Bugs Full Room Special Treatment', price: Math.round(startingPrice * 1.5) },
+      { item: 'Termite Barrier Injection (Per Room)', price: Math.round(startingPrice * 2.0) },
+      { item: 'General Insect & Spider Spraying', price: Math.round(startingPrice * 0.8) }
+    ];
+  } else if (norm.includes('painter')) {
+    return [
+      { item: 'Interior Royal Emulsion (Per Sq Ft Rate)', price: Math.round(startingPrice / 50) || 15 },
+      { item: 'Exterior Wall Weatherproofing (Per Sq Ft)', price: Math.round(startingPrice / 60) || 12 },
+      { item: 'Single Room Accent Wall Painting', price: startingPrice },
+      { item: 'Metal Gate / Grill Gloss Enamel Polish', price: Math.round(startingPrice * 1.2) }
+    ];
+  } else if (norm.includes('carpenter')) {
+    return [
+      { item: 'Main Door Lock / Handle Installation', price: startingPrice },
+      { item: 'Wooden Wardrobe Hinge & Slider Repair', price: Math.round(startingPrice * 0.7) },
+      { item: 'Custom Bookshelf / Modular Unit Assembly', price: Math.round(startingPrice * 2.0) },
+      { item: 'Wooden Chair / Table Joint Reinforcement', price: Math.round(startingPrice * 0.5) }
+    ];
+  } else if (norm.includes('water')) {
+    return [
+      { item: '1000 Litres Utility & Groundwater Tank', price: startingPrice },
+      { item: '2000 Litres Pure Groundwater Tank Supply', price: Math.round(startingPrice * 1.8) },
+      { item: '5000 Litres Massive Tanker Delivery', price: Math.round(startingPrice * 4.0) },
+      { item: 'Express Fast-Track Delivery Fee (Add-on)', price: Math.round(startingPrice * 0.3) }
+    ];
+  } else {
+    return [
+      { item: 'General Service Call & Consultation', price: startingPrice },
+      { item: 'Standard Repair Service (up to 1 Hour)', price: Math.round(startingPrice * 1.5) },
+      { item: 'Premium Task Resolution & Guarantee', price: Math.round(startingPrice * 2.2) }
+    ];
+  }
 }
 
 export default function VerifiedPros({
@@ -19,30 +89,71 @@ export default function VerifiedPros({
   onClearNeighborhood
  }: VerifiedProsProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [filteredPros, setFilteredPros] = useState<Pro[]>([]);
+  const [allPros, setAllPros] = useState<Pro[]>(VERIFIED_PROS);
+  const [expandedProId, setExpandedProId] = useState<string | null>(null);
 
-  // Fetch matching pros from the backend whenever search or neighborhood
-  // filters change. The API performs the same category-group matching
-  // (maintenance/cleaning/home improvement) that used to run client-side
-  // against the hardcoded VERIFIED_PROS array.
+  // Trigger a loading skeleton effect when search or neighborhood filters change
   useEffect(() => {
-    let cancelled = false;
     setIsLoading(true);
-    api
-      .getProviders({ search: searchQuery, neighborhood: selectedNeighborhood })
-      .then((pros) => {
-        if (!cancelled) setFilteredPros(pros);
-      })
-      .catch(() => {
-        if (!cancelled) setFilteredPros([]);
-      })
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
   }, [searchQuery, selectedNeighborhood]);
+
+  // Load pros from localStorage and merge with static
+  useEffect(() => {
+    try {
+      const localProsStr = localStorage.getItem('jc_pros');
+      if (localProsStr) {
+        const localPros: Pro[] = JSON.parse(localProsStr).map((p: any) => ({
+          ...p,
+          avatarUrl: p.avatarUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop',
+          reviewsCount: p.reviewsCount !== undefined ? p.reviewsCount : (p.reviews !== undefined ? p.reviews : 0),
+          bio: p.bio || `Local certified professional in ${p.category} services across ${p.neighborhood || 'Jamshedpur'}.`,
+          startingPrice: p.startingPrice || 299,
+          phone: p.phone || '+91 99999 99999'
+        }));
+        
+        const combined = [...localPros, ...VERIFIED_PROS];
+        const unique = combined.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i);
+        setAllPros(unique);
+      } else {
+        setAllPros(VERIFIED_PROS);
+      }
+    } catch (e) {
+      console.error('Error loading local pros:', e);
+      setAllPros(VERIFIED_PROS);
+    }
+  }, [searchQuery, selectedNeighborhood]);
+  
+  // Filter pros based on search query and location
+  const filteredPros = allPros.filter((pro) => {
+    let matchesCategoryGroup = false;
+    const query = searchQuery.toLowerCase();
+    
+    // Group categories mapping
+    if (query === 'maintenance') {
+      matchesCategoryGroup = ['plumber', 'electrician', 'carpenter', 'ac specialist', 'ac specialist'].some(c => pro.category.toLowerCase().includes(c));
+    } else if (query === 'cleaning') {
+      matchesCategoryGroup = ['cleaning', 'cleaner', 'deep cleaning'].some(c => pro.category.toLowerCase().includes(c));
+    } else if (query === 'home improvement') {
+      matchesCategoryGroup = ['painter', 'carpenter', 'technician'].some(c => pro.category.toLowerCase().includes(c));
+    }
+
+    const matchesSearch = searchQuery
+      ? matchesCategoryGroup ||
+        pro.name.toLowerCase().includes(query) ||
+        pro.category.toLowerCase().includes(query) ||
+        pro.bio.toLowerCase().includes(query)
+      : true;
+
+    const matchesNeighborhood = selectedNeighborhood
+      ? pro.neighborhood.toLowerCase() === selectedNeighborhood.toLowerCase()
+      : true;
+
+    return matchesSearch && matchesNeighborhood;
+  });
 
   return (
     <section className="bg-slate-50 py-20 border-b border-gray-100" id="pros-section">
@@ -51,16 +162,16 @@ export default function VerifiedPros({
         {/* Section Header */}
         <div className="flex items-end justify-between mb-12" id="pros-header-row">
           <div id="pros-title-group">
-            <span className="text-[11px] font-bold text-[#3a506b] tracking-widest uppercase block mb-2 leading-none">
+            <span className="text-[11px] font-bold text-[#102050] tracking-widest uppercase block mb-2 leading-none">
               TOP RATED LOCALS
             </span>
-            <h2 className="font-display font-extrabold text-[#0f172a] text-3xl sm:text-4xl tracking-tight">
+            <h2 className="font-display font-extrabold text-[#102050] text-3xl sm:text-4xl tracking-tight">
               Verified Pros Near You
             </h2>
           </div>
           <button 
             onClick={() => onOpenBooking()}
-            className="flex items-center gap-1.5 text-sm font-bold text-[#1c2541] hover:text-sky-600 transition-colors cursor-pointer group"
+            className="flex items-center gap-1.5 text-sm font-bold text-[#102050] hover:text-[#f1b42f] transition-colors cursor-pointer group"
             id="view-all-pros-btn"
           >
             Browse all 
@@ -73,12 +184,12 @@ export default function VerifiedPros({
           <div className="flex flex-wrap items-center gap-2 mb-8" id="pros-active-filters">
             <span className="text-xs text-gray-400 font-bold uppercase tracking-wider mr-2">Filters:</span>
             {searchQuery && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-full shadow-sm">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#102050] bg-[#f1b42f]/15 border border-[#f1b42f]/30 px-3 py-1.5 rounded-full shadow-sm">
                 Service: "{searchQuery}"
                 {(onClearSearch || onClearNeighborhood) && (
                   <button 
                     onClick={onClearSearch}
-                    className="hover:bg-sky-100 rounded-full p-0.5 text-sky-500 hover:text-sky-700 transition-colors cursor-pointer"
+                    className="hover:bg-[#f1b42f]/30 rounded-full p-0.5 text-[#102050] transition-colors cursor-pointer"
                     aria-label="Clear service filter"
                   >
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +304,7 @@ export default function VerifiedPros({
                 if (onClearSearch) onClearSearch();
                 if (onClearNeighborhood) onClearNeighborhood();
               }}
-              className="px-4 py-2 bg-[#0f172a] hover:bg-[#1e293b] text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer"
+              className="px-4 py-2 bg-[#102050] hover:bg-[#1b356e] text-white rounded-lg text-xs font-bold transition-all shadow-sm cursor-pointer"
             >
               Reset Filters
             </button>
@@ -204,7 +315,10 @@ export default function VerifiedPros({
             {filteredPros.map((pro) => (
               <div
                 key={pro.id}
-                className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col justify-between"
+                onClick={() => {
+                  setExpandedProId(expandedProId === pro.id ? null : pro.id);
+                }}
+                className={`bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col justify-between cursor-pointer select-none relative ${expandedProId === pro.id ? 'ring-2 ring-[#f1b42f]/40 border-[#f1b42f]/30' : ''}`}
                 id={`pro-card-${pro.id}`}
               >
                 <div id={`pro-card-content-${pro.id}`}>
@@ -224,7 +338,7 @@ export default function VerifiedPros({
                       )}
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-[#0f172a] text-sm leading-tight" id={`pro-name-${pro.id}`}>
+                      <h3 className="font-display font-bold text-[#102050] text-sm leading-tight" id={`pro-name-${pro.id}`}>
                         {pro.name}
                       </h3>
                       <p className="text-xs text-gray-400 font-medium mt-0.5" id={`pro-category-${pro.id}`}>
@@ -271,18 +385,19 @@ export default function VerifiedPros({
                   </p>
 
                   {/* Direct Contact Block */}
-                  <div className="bg-sky-50/50 hover:bg-sky-50/90 border border-sky-100/70 rounded-xl p-3 mb-5 transition-all" id={`pro-contact-box-${pro.id}`}>
+                  <div className="bg-[#f1b42f]/5 hover:bg-[#f1b42f]/10 border border-[#f1b42f]/20 rounded-xl p-3 mb-5 transition-all" id={`pro-contact-box-${pro.id}`}>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-bold text-sky-700 uppercase tracking-wider">Direct Contact</span>
+                      <span className="text-[10px] font-bold text-[#102050] uppercase tracking-wider">Direct Contact</span>
                       <span className="text-[9px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded uppercase tracking-wider">Verified No.</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <a 
                         href={`tel:${pro.phone.replace(/\s+/g, '')}`} 
-                        className="text-sm font-extrabold text-[#0f172a] hover:text-sky-600 hover:underline flex items-center gap-1.5"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-sm font-extrabold text-[#102050] hover:text-[#f1b42f] hover:underline flex items-center gap-1.5"
                         id={`pro-phone-link-${pro.id}`}
                       >
-                        <Phone className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                        <Phone className="w-3.5 h-3.5 text-[#f1b42f] shrink-0" />
                         {pro.phone}
                       </a>
                       <div className="flex items-center gap-1.5">
@@ -290,6 +405,7 @@ export default function VerifiedPros({
                           href={`https://wa.me/${pro.phone.replace(/[^0-9]/g, '')}`}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 hover:text-emerald-700 rounded-lg transition-colors flex items-center justify-center cursor-pointer"
                           title="Chat on WhatsApp"
                           id={`pro-whatsapp-link-${pro.id}`}
@@ -300,7 +416,8 @@ export default function VerifiedPros({
                         </a>
                         <a 
                           href={`tel:${pro.phone.replace(/\s+/g, '')}`} 
-                          className="p-1.5 bg-sky-50 hover:bg-sky-100 text-sky-600 hover:text-sky-700 rounded-lg transition-colors flex items-center justify-center cursor-pointer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-1.5 bg-[#102050]/5 hover:bg-[#102050]/10 text-[#102050] rounded-lg transition-colors flex items-center justify-center cursor-pointer"
                           title="Call Technician"
                         >
                           <Phone className="w-4 h-4" />
@@ -308,19 +425,71 @@ export default function VerifiedPros({
                       </div>
                     </div>
                   </div>
+
+                  {/* Interactive Quotation Toggle Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedProId(expandedProId === pro.id ? null : pro.id);
+                    }}
+                    className="w-full mt-2 mb-4 flex items-center justify-between px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 rounded-xl text-xs font-bold text-[#102050] transition-colors cursor-pointer"
+                    id={`pro-quotes-toggle-btn-${pro.id}`}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <ClipboardList className="w-3.5 h-3.5 text-[#f1b42f]" />
+                      {expandedProId === pro.id ? 'Hide Price Quotations' : 'View Price Quotations'}
+                    </span>
+                    <ChevronDown className={`w-4 h-4 text-[#102050]/60 transition-transform duration-300 ${expandedProId === pro.id ? 'rotate-180 text-[#f1b42f]' : ''}`} />
+                  </button>
+
+                  {/* Expandable Quotation Dropdown List */}
+                  {expandedProId === pro.id && (
+                    <div 
+                      onClick={(e) => e.stopPropagation()} 
+                      className="mb-4 bg-slate-50 border border-slate-200/50 rounded-xl p-3.5 space-y-2.5 transition-all duration-300 animate-fade-in"
+                      id={`pro-quotes-dropdown-${pro.id}`}
+                    >
+                      <div className="flex items-center justify-between border-b border-slate-200/60 pb-1.5">
+                        <span className="text-[10px] font-extrabold text-[#102050] uppercase tracking-wider">
+                          Service Price Quotations
+                        </span>
+                        <span className="text-[9px] text-emerald-600 font-extrabold bg-emerald-50 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                          Best Local Rates
+                        </span>
+                      </div>
+                      <div className="space-y-2 divide-y divide-slate-100 max-h-[160px] overflow-y-auto pr-1">
+                        {getQuotations(pro.category, pro.startingPrice).map((quote, idx) => (
+                          <div key={idx} className="flex justify-between items-center text-xs pt-2 first:pt-0">
+                            <span className="text-gray-600 font-semibold text-left mr-2 leading-tight">
+                              {quote.item}
+                            </span>
+                            <span className="font-extrabold text-[#102050] shrink-0 font-mono">
+                              ₹{quote.price}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-[9.5px] text-gray-400 font-medium leading-relaxed pt-1.5 border-t border-slate-200/60 text-center">
+                        💡 Final quotes can be customized before service.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Footer and Call-to-Action */}
                 <div className="pt-4 border-t border-gray-100 flex items-center justify-between" id={`pro-footer-${pro.id}`}>
                   <div className="flex flex-col" id={`pro-price-box-${pro.id}`}>
-                    <span className="text-[10px] font-medium text-gray-400 uppercase leading-none">Starting from</span>
+                    <span className="text-[10px] font-medium text-gray-400 uppercase leading-none">Starting at</span>
                     <span className="text-xs font-semibold text-gray-400 mt-1 leading-none">
-                      <strong className="text-sm font-extrabold text-[#0f172a]">₹{pro.startingPrice}</strong>
+                      <strong className="text-sm font-extrabold text-[#102050]">₹{pro.startingPrice}</strong>/visit
                     </span>
                   </div>
                   <button
-                    onClick={() => onOpenBooking(pro.category, pro)}
-                    className="bg-[#0f172a] hover:bg-[#1e293b] text-white px-4 py-2.5 rounded text-xs font-bold transition-colors cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenBooking(pro.category, pro);
+                    }}
+                    className="bg-[#102050] hover:bg-[#1b356e] text-white px-4 py-2.5 rounded text-xs font-bold transition-colors cursor-pointer"
                     id={`pro-quote-btn-${pro.id}`}
                   >
                     Request Quote
